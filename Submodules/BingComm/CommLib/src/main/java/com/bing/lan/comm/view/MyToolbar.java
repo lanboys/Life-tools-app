@@ -68,10 +68,15 @@ public class MyToolbar extends Toolbar implements View.OnClickListener {
         if (attrs != null) {
             TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.MyToolbar);
             String toolbar_title = a.getString(R.styleable.MyToolbar_toolbar_title);
+            int toolbar_title_color = a.getColor(R.styleable.MyToolbar_toolbar_title_color,-1);
             int toolbar_title_gravity = a.getInt(R.styleable.MyToolbar_toolbar_title_gravity, -1);
             boolean toolbar_title_centerInParent = a.getBoolean(R.styleable.MyToolbar_toolbar_title_centerInParent, false);
             float toolbar_title_marginLeft = a.getDimension(R.styleable.MyToolbar_toolbar_title_marginLeft, -1.0f);
             float toolbar_title_marginRight = a.getDimension(R.styleable.MyToolbar_toolbar_title_marginRight, -1.0f);
+
+            if (toolbar_title_color != -1) {
+                mToolBarTitle.setTextColor(toolbar_title_color);
+            }
 
             if (toolbar_title_gravity != -1) {
                 mToolBarTitle.setGravity(toolbar_title_gravity);

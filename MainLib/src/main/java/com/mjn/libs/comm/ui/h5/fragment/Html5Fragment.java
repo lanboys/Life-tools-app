@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 
 import com.bing.lan.comm.app.AppUtil;
+import com.bing.lan.comm.view.MyToolbar;
 import com.mjn.libs.R;
 import com.mjn.libs.base.MainLibFragment;
 import com.mjn.libs.comm.ui.h5.BaseWebChromeClient;
@@ -41,6 +42,7 @@ public class Html5Fragment extends MainLibFragment<IHtml5Contract.IHtml5Presente
     private FrameLayout mLayout;
     private SeekBar mSeekBar;
     private Html5WebView mWebView;
+    MyToolbar mToolbar;
 
     public Html5Fragment() {
 
@@ -73,6 +75,9 @@ public class Html5Fragment extends MainLibFragment<IHtml5Contract.IHtml5Presente
     protected void initViewAndData(Intent intent, Bundle bundle) {
         mLayout = (FrameLayout) mContentView.findViewById(R.id.web_layout);
         mSeekBar = (SeekBar) mContentView.findViewById(R.id.web_sbr);
+        mToolbar = mContentView.findViewById(R.id.toolbar);
+
+        setToolBar(mToolbar, "包公有财", true, 0);
 
         // 创建 WebView
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -120,6 +125,7 @@ public class Html5Fragment extends MainLibFragment<IHtml5Contract.IHtml5Presente
             log.i("===== title ======: " + title);
             if (TextUtils.isEmpty(title)) {
                 title = "加载中...";
+                setToolBar(mToolbar, title, true, 0);
             }
             if (!TextUtils.isEmpty(url)) {
                 if (url.toLowerCase().startsWith("mcyd")) {
@@ -241,9 +247,9 @@ public class Html5Fragment extends MainLibFragment<IHtml5Contract.IHtml5Presente
             super.onPageFinished(view, url);
             // 拿到标题
             title = view.getTitle();
-            //if (headView != null) {
-            //    headView.setTitle(title);
-            //}
+            if (mToolbar != null) {
+                setToolBar(mToolbar, title, true, 0);
+            }
             //LoadingDialog.hideLoading();
         }
 

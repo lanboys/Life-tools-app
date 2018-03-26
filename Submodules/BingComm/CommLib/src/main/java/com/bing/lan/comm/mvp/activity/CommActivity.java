@@ -2,7 +2,6 @@ package com.bing.lan.comm.mvp.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -99,7 +98,7 @@ public class CommActivity extends PermissionActivity {
         TextView toolBarTitle = (TextView) toolBar.findViewById(R.id.toolbar_title);
         if (title != null && toolBarTitle != null) {
             toolBarTitle.setText(title);
-            toolBarTitle.setTextColor(Color.WHITE);
+            //toolBarTitle.setTextColor(Color.WHITE);
 
             //ViewGroup.LayoutParams layoutParams = toolBarTitle.getLayoutParams();
             //
@@ -112,7 +111,7 @@ public class CommActivity extends PermissionActivity {
         toolBar.setTitle("");
         setSupportActionBar(toolBar);//不调用 setTitle() 会用默认标题，类名？
         // toolBar.setIcon(R.mipmap.ic_launcher);// 设置应用图标
-        toolBar.setTitleTextColor(Color.WHITE);
+        //toolBar.setTitleTextColor(Color.WHITE);
 
         if (finishActivity) {
 
@@ -139,7 +138,7 @@ public class CommActivity extends PermissionActivity {
             //     if (resId > 0) {
             //         actionBar.setHomeAsUpIndicator(resId);
             //     } else {
-            //         actionBar.setHomeAsUpIndicator(R.drawable.iv_back);
+            //         actionBar.setHomeAsUpIndicator(R.drawable.ic_back_white);
             //     }
             // }
             // //给箭头添加监听器

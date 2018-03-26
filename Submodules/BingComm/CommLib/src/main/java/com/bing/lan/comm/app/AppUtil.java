@@ -60,7 +60,7 @@ public class AppUtil {
     private static Application sApplication;
     private static Resources sResources;
     /* global cache */
-    private static Map<String, Object> sCacheMap;
+    //private static Map<String, Object> sCacheMap;
     private static File sPicassoCacheFile;
     /* log */
     private static LogUtil log = LogUtil.getLogUtil(AppUtil.class, LogUtil.LOG_VERBOSE);
@@ -73,7 +73,7 @@ public class AppUtil {
         // sGson = new Gson();
         sHandler = new Handler();
         sThreadId = Process.myTid();
-        sCacheMap = new HashMap<>();
+        //sCacheMap = new HashMap<>();
         sResources = sContext.getResources();
         // realm init
         //RealmManager.initRealm(sContext);
@@ -88,9 +88,9 @@ public class AppUtil {
     //        return va;
     //    }
 
-    public static void putGlobal(String key, Object value) {
-        sCacheMap.put(key, value);
-    }
+    //public static void putGlobal(String key, Object value) {
+    //    sCacheMap.put(key, value);
+    //}
 
     public static boolean hitClick(int time, int hit) {
         if (mHits == null) {
@@ -110,17 +110,17 @@ public class AppUtil {
         }
     }
 
-    public static <T> T getGlobal(String key) {
-        return getGlobal(key, null);
-    }
+    //public static <T> T getGlobal(String key) {
+    //    return getGlobal(key, null);
+    //}
 
     @SuppressWarnings("unchecked")
-    public static <T> T getGlobal(String key, T defaultValue) {
-        T va = (T) sCacheMap.get(key);
-        if (va == null)
-            return defaultValue;
-        return va;
-    }
+    //public static <T> T getGlobal(String key, T defaultValue) {
+    //    T va = (T) sCacheMap.get(key);
+    //    if (va == null)
+    //        return defaultValue;
+    //    return va;
+    //}
 
     public static DisplayMetrics getDisplayMetrics() {
         return getAppRes().getDisplayMetrics();

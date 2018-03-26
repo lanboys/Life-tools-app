@@ -20,7 +20,7 @@ public class HomePresenter extends
 
     @Override
     public void updateHome(String userId) {
-        showProgressDialog("");
+        //showProgressDialog("");
         requestData(ACTION_UPDATE_HOME, userId);
     }
 

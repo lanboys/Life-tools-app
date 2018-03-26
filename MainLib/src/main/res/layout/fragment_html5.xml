@@ -14,15 +14,19 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:toolbar_title_centerInParent="true"/>
+        app:toolbar_title_centerInParent="true"
+        app:toolbar_title_color="@color/main_color_text_black"/>
 
     <SeekBar
         android:id="@+id/web_sbr"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="12dp"
         android:focusable="false"
+        android:paddingEnd="0dp"
+        android:paddingStart="0dp"
         android:progressDrawable="@drawable/po_seekbar"
-        android:thumb="@null"/>
+        android:thumb="@null"
+    />
 
     <FrameLayout
         android:id="@+id/web_layout"

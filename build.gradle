@@ -47,11 +47,11 @@ allprojects {
 //    }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
 //https://stackoverflow.com/questions/32914499/error-execution-failed-for-task-appclean-unable-to-delete-file
-task clean1(type: Exec) {
+task clean(type: Exec) {
     ext.lockhunter = '\"C:\\Program Files\\LockHunter\\LockHunter.exe\"'
     def buildDir = file(new File("build"))
     commandLine 'cmd', "$lockhunter", '/delete', '/silent', buildDir

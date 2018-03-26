@@ -67,17 +67,6 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
         setToolBar(mToolbar, "包公有财", false, 0);
     }
 
-    @Override
-    protected void readyStartPresenter() {
-        mBtnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "点我登录", Toast.LENGTH_SHORT).show();
-                startActivity(LoginActivity.class, false, true);
-            }
-        });
-    }
-
     private void initView() {
         mBtnLogin = mContentView.findViewById(R.id.btn_login);
         mToolbar = mContentView.findViewById(R.id.toolbar);
@@ -115,6 +104,19 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
         mAdapter.setOnHomeClickCallBack(this);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setDataAndRefresh(mList);
+    }
+
+    @Override
+    protected void readyStartPresenter() {
+        mBtnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "点我登录", Toast.LENGTH_SHORT).show();
+                startActivity(LoginActivity.class, false, true);
+            }
+        });
+
+        mPresenter.updateHome("");
     }
 
     @Override

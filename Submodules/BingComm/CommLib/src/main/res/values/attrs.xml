@@ -4,6 +4,7 @@
     <!-- 自定义toolbar -->
     <declare-styleable name="MyToolbar">
         <attr name="toolbar_title" format="string"/>
+        <attr name="toolbar_title_color" format="color|reference"/>
         <attr name="toolbar_title_centerInParent" format="boolean"/>
         <attr name="toolbar_title_marginLeft" format="dimension"/>
         <attr name="toolbar_title_marginRight" format="dimension"/>

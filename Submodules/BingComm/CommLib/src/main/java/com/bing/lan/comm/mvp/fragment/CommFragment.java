@@ -1,7 +1,6 @@
 package com.bing.lan.comm.mvp.fragment;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -73,7 +72,7 @@ public class CommFragment extends LifecycleFragment {
         TextView toolBarTitle = (TextView) toolBar.findViewById(R.id.toolbar_title);
         if (title != null && toolBarTitle != null) {
             toolBarTitle.setText(title);
-            toolBarTitle.setTextColor(Color.WHITE);
+            //toolBarTitle.setTextColor(Color.WHITE);
 
             //ViewGroup.LayoutParams layoutParams = toolBarTitle.getLayoutParams();
             //
@@ -86,7 +85,7 @@ public class CommFragment extends LifecycleFragment {
         toolBar.setTitle("");
         //setSupportActionBar(toolBar);//不调用 setTitle() 会用默认标题，类名？
         // toolBar.setIcon(R.mipmap.ic_launcher);// 设置应用图标
-        toolBar.setTitleTextColor(Color.WHITE);
+        //toolBar.setTitleTextColor(Color.WHITE);
 
         if (finishActivity) {
 
@@ -113,7 +112,7 @@ public class CommFragment extends LifecycleFragment {
             //     if (resId > 0) {
             //         actionBar.setHomeAsUpIndicator(resId);
             //     } else {
-            //         actionBar.setHomeAsUpIndicator(R.drawable.iv_back);
+            //         actionBar.setHomeAsUpIndicator(R.drawable.ic_back_white);
             //     }
             // }
             // //给箭头添加监听器

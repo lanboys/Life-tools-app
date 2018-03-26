@@ -6,23 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
 
 import com.bing.lan.comm.R;
-import com.bing.lan.comm.refresh.header.JzkHeader;
 import com.bing.lan.comm.utils.LogUtil;
 import com.bing.lan.comm.utils.NetworkUtil;
 import com.ganxin.library.LoadDataLayout;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreater;
-import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreater;
-import com.scwang.smartrefresh.layout.api.RefreshFooter;
-import com.scwang.smartrefresh.layout.api.RefreshHeader;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
-import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
 /**
  * @author 蓝兵
@@ -107,38 +96,38 @@ public abstract class BaseApplication extends Application {
                 .setReloadBtnVisible(false)
                 .setReloadClickArea(LoadDataLayout.FULL);
 
-        ClassicsHeader.REFRESH_HEADER_RELEASE = "松开,我会显示更多数据";
+        //ClassicsHeader.REFRESH_HEADER_RELEASE = "松开,我会显示更多数据";
 
-        SmartRefreshLayout.setDefaultRefreshHeaderCreater(new DefaultRefreshHeaderCreater() {
-            @NonNull
-            @Override
-            public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
-                JzkHeader jzkHeader = new JzkHeader(context);
-                jzkHeader.setSpinnerStyle(SpinnerStyle.Scale);
-                jzkHeader.setArrowResource(R.drawable.loading_rocket);
-                jzkHeader.setProgressResource(R.drawable.loading_rocket);
-                jzkHeader.setFinishDuration(320);//刷新完成 后 隐藏所用时间
-                jzkHeader.setEnableLastTime(false);//隐藏上次刷新时间
-
-                layout.setPrimaryColorsId(R.color.color_refreshLayout_background, R.color.color_refreshLayout_text);
-                layout.setFooterHeight(80);
-                layout.setHeaderHeight(80);
-                layout.setReboundDuration(320);//设置回弹动画时长
-                layout.setDisableContentWhenLoading(false);
-                layout.setDisableContentWhenRefresh(false);
-                layout.setEnableAutoLoadmore(false);
-
-                return jzkHeader;
-            }
-        });
-
-        SmartRefreshLayout.setDefaultRefreshFooterCreater(new DefaultRefreshFooterCreater() {
-            @NonNull
-            @Override
-            public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
-                return new ClassicsFooter(context);
-            }
-        });
+        //SmartRefreshLayout.setDefaultRefreshHeaderCreater(new DefaultRefreshHeaderCreater() {
+        //    @NonNull
+        //    @Override
+        //    public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
+        //        JzkHeader jzkHeader = new JzkHeader(context);
+        //        jzkHeader.setSpinnerStyle(SpinnerStyle.Scale);
+        //        jzkHeader.setArrowResource(R.drawable.loading_rocket);
+        //        jzkHeader.setProgressResource(R.drawable.loading_rocket);
+        //        jzkHeader.setFinishDuration(320);//刷新完成 后 隐藏所用时间
+        //        jzkHeader.setEnableLastTime(false);//隐藏上次刷新时间
+        //
+        //        layout.setPrimaryColorsId(R.color.color_refreshLayout_background, R.color.color_refreshLayout_text);
+        //        layout.setFooterHeight(80);
+        //        layout.setHeaderHeight(80);
+        //        layout.setReboundDuration(320);//设置回弹动画时长
+        //        layout.setDisableContentWhenLoading(false);
+        //        layout.setDisableContentWhenRefresh(false);
+        //        layout.setEnableAutoLoadmore(false);
+        //
+        //        return jzkHeader;
+        //    }
+        //});
+        //
+        //SmartRefreshLayout.setDefaultRefreshFooterCreater(new DefaultRefreshFooterCreater() {
+        //    @NonNull
+        //    @Override
+        //    public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
+        //        return new ClassicsFooter(context);
+        //    }
+        //});
     }
 
     protected abstract boolean getLogDebug();

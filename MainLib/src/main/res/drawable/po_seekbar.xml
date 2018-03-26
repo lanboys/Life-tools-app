@@ -14,13 +14,13 @@
         </scale>
     </item>
     <item android:id="@android:id/progress">
-        <scale android:scaleWidth="100%">
+        <!--<scale android:scaleWidth="100%">-->
             <selector>
                 <item android:state_enabled="false">
                     <color android:color="@android:color/transparent"/>
                 </item>
                 <item android:drawable="@drawable/seekbar_progress"/>
             </selector>
-        </scale>
+        <!--</scale>-->
     </item>
 </layer-list>

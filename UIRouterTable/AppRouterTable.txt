@@ -1,0 +1,8 @@
+auto generated, do not change !!!! 
+
+HOST : app
+
+Ê×Ò³
+/mainApp
+bookName:String
+
