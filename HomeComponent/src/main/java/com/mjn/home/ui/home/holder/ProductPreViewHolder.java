@@ -1,5 +1,6 @@
 package com.mjn.home.ui.home.holder;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -8,6 +9,7 @@ import com.bing.lan.comm.adapter.BaseViewHolder;
 import com.mjn.home.R;
 import com.mjn.home.ui.home.adapter.HomeRecyclerAdapter;
 import com.mjn.libs.comm.bean.IHomeItemBean;
+import com.mjn.libs.comm.bean.IProduct;
 
 /**
  * Created by 蓝兵 on 2018/3/26.
@@ -27,7 +29,6 @@ public class ProductPreViewHolder extends BaseViewHolder<IHomeItemBean> {
         super(convertView);
         mOnHomeClickCallBack = onHomeClickCallBack;
 
-
         mHomeProductRoot = (LinearLayout) convertView.findViewById(R.id.home_product_root);
         mHomeProductLixi = (TextView) convertView.findViewById(R.id.home_product_lixi);
         mHomeProductLixi2 = (TextView) convertView.findViewById(R.id.home_product_lixi2);
@@ -39,8 +40,41 @@ public class ProductPreViewHolder extends BaseViewHolder<IHomeItemBean> {
     @Override
     public void fillData(IHomeItemBean data, int position) {
 
+        IProduct product = (IProduct) data;
+        updateView(product);
     }
 
-    private void initView() {
+    /**
+     * preferenceList 数据
+     */
+    private void updateView(final IProduct product) {
+        if (product.getAddYield() > 0) {
+            mHomeProductLixi2.setVisibility(View.VISIBLE);
+            mHomeProductLixi.setText(product.getAnnualYield() - product.getAddYield() + "%");
+            mHomeProductLixi2.setText(" + " + String.valueOf(product.getAddYield()) + "%");
+        } else {
+            mHomeProductLixi2.setVisibility(View.GONE);
+            mHomeProductLixi.setText(String.valueOf(product.getAnnualYield()) + "%");
+        }
+        // TODO 剩余金额 改为 起投金额
+        /*mHomeProductLeftMoney.setText("剩余");
+        mHomeProductLeftMoney.append(String.valueOf(product.getMinInvestment() / 1000));
+        mHomeProductLeftMoney.append("元");*/
+        mHomeProductLeftMoney.setText(String.valueOf(product.getMinInvestment() / 1000) + "元");
+
+        mHomeProductDay.setText(product.getFinancialPeriod());
+        //        mHomeProductDay.setText(Html.fromHtml("期限<font color= '#e3a802'>" + "" + product.getFinancialPeriod() + "</font>" + "月"));
+
+        mHomeProductRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("productId", product.getProductId());
+                bundle.putString("title", product.getTitle());
+                if (mOnHomeClickCallBack != null) {
+                    mOnHomeClickCallBack.onClickToInvestDetailPager(bundle);
+                }
+            }
+        });
     }
 }

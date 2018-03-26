@@ -70,12 +70,7 @@ public class BtnViewHolder extends BaseViewHolder<IHomeItemBean> implements View
         }
 
         // 未登录显示红包
-        if (AppSpDataUtil.getInstance().isLogined()) {
-            mLlHongbaoorqiandao.setVisibility(View.GONE);
-        } else {
-            mIvHongbaoorqiandao.setBackgroundResource(R.drawable.xinshouhongbao);
-            mLlHongbaoorqiandao.setVisibility(View.VISIBLE);
-        }
+        mLlHongbaoorqiandao.setVisibility(AppSpDataUtil.getInstance().isLogined() ? View.GONE : View.VISIBLE);
     }
 
     @Override
@@ -137,8 +132,11 @@ public class BtnViewHolder extends BaseViewHolder<IHomeItemBean> implements View
         if (AppSpDataUtil.getInstance().isLogined()) {
             if (AppSpDataUtil.getInstance().getUserBean() != null) {
                 Bundle bundle = new Bundle();
-                bundle.putString("url", AppSpDataUtil.getInstance().getUserBean().getInvitedFriendsUrl() + "?userId=" + AppSpDataUtil.getInstance().getUserBean().getUserId());
-                Tools.Log(AppSpDataUtil.getInstance().getUserBean().getInvitedFriendsUrl() + "?userId=" + AppSpDataUtil.getInstance().getUserBean().getUserId());
+                bundle.putString("url", AppSpDataUtil.getInstance().getUserBean().getInvitedFriendsUrl()
+                        + "?userId=" + AppSpDataUtil.getInstance().getUserBean().getUserId());
+
+                Tools.Log(AppSpDataUtil.getInstance().getUserBean().getInvitedFriendsUrl()
+                        + "?userId=" + AppSpDataUtil.getInstance().getUserBean().getUserId());
                 if (mOnHomeClickCallBack != null) {
                     mOnHomeClickCallBack.onClickToHtml5Pager(bundle);
                 }

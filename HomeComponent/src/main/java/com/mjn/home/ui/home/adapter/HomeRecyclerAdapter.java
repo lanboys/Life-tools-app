@@ -112,5 +112,7 @@ public class HomeRecyclerAdapter extends BaseRecyclerAdapter<IHomeItemBean> {
         void onClickToLoginPager();
 
         void onClickToActivityCenterPager();
+
+        void onClickToInvestDetailPager(Bundle bundle);
     }
 }

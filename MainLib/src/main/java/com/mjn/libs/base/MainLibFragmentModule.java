@@ -18,8 +18,14 @@ public abstract class MainLibFragmentModule extends BaseFragmentModule
             String code = result.getCode();
             String message = result.getMessage();
             String debugmessage = result.getDebugmessage();
+            Long servicetime = result.getServicetime();
+
             ResponseListDataResult<Object> resultData = result.getData();
-            if (ResponseResult.REQUEST_CODE_SUCCESS.equals(code)) {
+            if (ResponseResult.REQUEST_CODE_SUCCESS.equals(code) && resultData != null) {
+                resultData.setCode(code);
+                resultData.setMessage(message);
+                resultData.setDebugmessage(debugmessage);
+                resultData.setServicetime(servicetime);
                 presenter.onSuccess(action, resultData);
             } else {
                 onError(action, new BasePresenter.MvpHttpException(message + ", " + debugmessage));

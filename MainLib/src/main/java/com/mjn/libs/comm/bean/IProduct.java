@@ -34,6 +34,16 @@ public class IProduct implements Serializable, IHomeItemBean {
     private Integer couponNum;
     private String isUseCoupon;
     private String introduceUrl;
+    // 调用接口时 后台返回的时间
+    private Long servicetime;
+
+    public Long getServicetime() {
+        return servicetime;
+    }
+
+    public void setServicetime(Long servicetime) {
+        this.servicetime = servicetime;
+    }
 
     public IProduct() {
     }

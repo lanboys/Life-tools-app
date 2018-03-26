@@ -5,8 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Toast;
 
 import com.ganxin.library.LoadDataLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -18,9 +16,11 @@ import com.mjn.libs.base.MainLibFragment;
 import com.mjn.libs.comm.bean.Adv;
 import com.mjn.libs.comm.bean.Home;
 import com.mjn.libs.comm.bean.IHomeItemBean;
+import com.mjn.libs.comm.bean.IProduct;
 import com.mjn.libs.comm.ui.h5.activity.WebViewActivity;
 import com.mjn.libs.comm.ui.login.LoginActivity;
 import com.mjn.libs.cons.WebViewCons;
+import com.mjn.libs.utils.SPUtil;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -32,12 +32,14 @@ import java.util.List;
 public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
         implements IHomeContract.IHomeView, HomeRecyclerAdapter.OnHomeClickCallBack {
 
-    private android.widget.Button mBtnLogin;
     private com.bing.lan.comm.view.MyToolbar mToolbar;
     private com.mjn.libs.view.pullRefresh.PullToRefreshLoadDataLayoutRecyclerView mPullRefreshRecycler;
     private RecyclerView mRecyclerView;
     private HomeRecyclerAdapter mAdapter;
     private ArrayList<IHomeItemBean> mList = new ArrayList<>();
+    private List<Adv> mBannerList = new ArrayList<>();
+    private List<Adv> mBottomList = new ArrayList<>();
+    private ArrayList<IHomeItemBean> mHomeItemBeans = new ArrayList<>();
 
     public HomeFragment() {
 
@@ -69,7 +71,6 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
     }
 
     private void initView() {
-        mBtnLogin = mContentView.findViewById(R.id.btn_login);
         mToolbar = mContentView.findViewById(R.id.toolbar);
         mPullRefreshRecycler = mContentView.findViewById(R.id.pull_refresh_recycler);
 
@@ -110,29 +111,99 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
 
     @Override
     protected void readyStartPresenter() {
-        mBtnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "点我登录", Toast.LENGTH_SHORT).show();
-                startActivity(LoginActivity.class, false, true);
-            }
-        });
-
         mPresenter.updateHome("");
     }
 
     @Override
     public void onUpdateSuccess(Home home) {
-        List<Adv> bannerList = home.getBannerList();
-        BannerBean bannerBean = new BannerBean(bannerList, IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BANNER);
-        HomeBtnBean homeBtnBean = new HomeBtnBean(home.getPlatformDescUrl(), IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BTN);
+        mHomeItemBeans.clear();
 
-        ArrayList<IHomeItemBean> list = new ArrayList<>();
-        list.add(bannerBean);
-        list.add(homeBtnBean);
+        if (home.getBannerList() != null && home.getBannerList().size() > 0) {
+            //有数据才清空
+            mBannerList.clear();
+            mBannerList.addAll(home.getBannerList());
+        }
+        if (mBannerList.size() == 0) {
+            mBannerList.add(new Adv());
+        }
+        BannerBean bannerBean = new BannerBean(mBannerList, IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BANNER);
+        mHomeItemBeans.add(bannerBean);
 
-        mAdapter.setDataAndRefresh(list);
-        mAdapter.notifyDataSetChanged();
+        //主页中上三个按钮 平台简介，最新活动，邀请好友
+        String platformDescUrl = home.getPlatformDescUrl();
+        SPUtil.getInstance().putString("spPlatformProfile", platformDescUrl);
+        HomeBtnBean homeBtnBean = new HomeBtnBean(platformDescUrl, IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BTN);
+        mHomeItemBeans.add(homeBtnBean);
+        //主页中上三个按钮
+
+        // TODO: 2018/3/27 通知数据格式？？？？
+
+        //新手标
+        List<IProduct> firstUserList = home.getFirstUserList();
+        if (firstUserList != null && firstUserList.size() > 0) {
+            for (IProduct iProduct : firstUserList) {
+                iProduct.setHomeBeanType(IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_PRODUCT);
+                mHomeItemBeans.add(iProduct);
+            }
+        }
+        //新手标
+
+        //多个标
+        List<IProduct> preferenceList = home.getPreferenceList();
+        if (preferenceList != null && preferenceList.size() > 0) {
+            for (IProduct iProduct : preferenceList) {
+                iProduct.setHomeBeanType(IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_PRE_PRODUCT);
+                mHomeItemBeans.add(iProduct);
+            }
+        }
+        //多个标
+
+        //底部广告
+        //List<Adv> bottomList = home.getBottomList();
+        //if (bottomList != null && bottomList.size() > 0) {
+        //    //有数据才清空
+        //    mBottomList.clear();
+        //    for (Adv adv : bottomList) {
+        //        adv.setHomeBeanType(IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BOTTOM_GUIDE);
+        //        mBottomList.add(adv);
+        //    }
+        //}
+        //if (mBottomList.size() == 0) {
+        //    Adv adv = new Adv();
+        //    adv.setHomeBeanType(IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BOTTOM_GUIDE);
+        //    mBottomList.add(adv);
+        //}
+        //
+        //mHomeItemBeans.addAll(mBottomList);
+        mHomeItemBeans.add(new IHomeItemBean() {
+            @Override
+            public int getHomeBeanType() {
+                return IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BOTTOM_GUIDE;
+            }
+
+            @Override
+            public void setHomeBeanType(int homeBeanType) {
+
+            }
+        });
+        //底部广告
+
+        //最底部文字  包公有财，保你有财
+        mHomeItemBeans.add(new IHomeItemBean() {
+            @Override
+            public int getHomeBeanType() {
+                return IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BOTTOM;
+            }
+
+            @Override
+            public void setHomeBeanType(int homeBeanType) {
+
+            }
+        });
+        //最底部文字  包公有财，保你有财
+
+        mAdapter.setDataAndRefresh(mHomeItemBeans);
+        //mAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -151,5 +222,10 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
     @Override
     public void onClickToActivityCenterPager() {
         showError("去活动中心页面");
+    }
+
+    @Override
+    public void onClickToInvestDetailPager(Bundle bundle) {
+        showError("去投资详情页面");
     }
 }

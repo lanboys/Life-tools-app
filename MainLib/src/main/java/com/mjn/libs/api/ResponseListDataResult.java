@@ -15,6 +15,43 @@ public class ResponseListDataResult<T> implements Serializable {
     private long totalPages;
     private List<T> list;
 
+    private String code;
+    private String message;
+    private Long servicetime = Long.valueOf(System.currentTimeMillis());
+    private String debugmessage;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Long getServicetime() {
+        return servicetime;
+    }
+
+    public void setServicetime(Long servicetime) {
+        this.servicetime = servicetime;
+    }
+
+    public String getDebugmessage() {
+        return debugmessage;
+    }
+
+    public void setDebugmessage(String debugmessage) {
+        this.debugmessage = debugmessage;
+    }
+
     public ResponseListDataResult() {
     }
 
