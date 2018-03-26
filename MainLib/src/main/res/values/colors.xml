@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <!-- 主要背景色 -->
+    <!--<color name="main_color_background">#eff0f2</color>-->
+    <color name="main_color_background">#ffffff</color>
+    <!-- 主要文字黑色 -->
+    <color name="main_color_text_black">#3a424d</color>
+    <!-- 主要文字灰色 -->
+    <color name="main_color_text_gray">#7e8693</color>
+    <!-- 主要白色 -->
+    <color name="main_color_white">#fdfdfe</color>
+    <!-- 主要蓝色 -->
+    <color name="main_color_blue">#0195ff</color>
+    <!-- 主要蓝色 -->
+    <color name="main_color_gray">#dfe4ed</color>
+    <!-- 主要红色 -->
+    <color name="main_color_red">#ef1b10</color>
+    <!-- 主要 分割线 颜色 -->
+    <color name="main_color_gray_line">#f0f1f3</color>
+    <!-- popup 阴影 -->
+    <color name="popup_color_shadow">#8b7b7979</color>
+
+
+    <!--================================================-->
+    <!--=================原始项目颜色====================-->
+    <!--================================================-->
+    <!--================================================-->
+    <!--主题颜色-->
+    <color name="BLUE_THEME">#894f99</color>
+    <color name="loading_color">#e3a802</color>
+    <!--红色文字颜色-->
+    <color name="RED_CHAR">#e20f00</color>
+    <color name="REDPACKET_CHAR">#e3a802</color>
+    <!--白色-->
+    <color name="white">#ffffff</color>
+    <color name="white90">#33ffffff</color>
+    <!--背景灰色-->
+    <color name="GRAY_BG">#F4F4F4</color>
+    <!--分割线颜色-->
+    <color name="GRAY_LINE_COLOR">#eaeaea</color>
+    <color name="ORANG_COLOR">#e3a802</color>
+    <!--主字体颜色-->
+    <color name="CHAR_BLACK_COLOR">#333333</color>
+    <!--副字体颜色-->
+    <color name="CHAR_GRAY_COLOR">#666666</color>
+    <!--浅灰色字-->
+    <color name="CHAR_GRAY_LESS_COLOR">#999999</color>
+    <!--浅灰色字-->
+    <color name="CHAR_GRAY_LESS_COLOR2">#c9b2d0</color>
+    <!--tab文字-->
+    <color name="TAB_CHAR_COLOR">#444444</color>
+    <!--红色-->
+    <color name="red">#df1517</color>
+
+    <!--签到日历-->
+    <color name="SIGN_GRAY_CHAR">#212121</color>
+    <!--回款日历-->
+    <color name="PAY_GRAY_CHAR">#cdcdcd</color>
+    <!--标的详情购买按钮-->
+    <color name="BUY_BTN_CHAR">#cccdd2</color>
+    <!--我的优惠券-->
+    <color name="COUPON_CHAR">#9e9e9e</color>
+    <color name="COUPON_USED_CHAR">#b2b2b2</color>
+
+
+    <color name="BG_GRAY">#F4F4F4</color>
+    <color name="LINE_GRAY_COLOR">#ededed</color>
+    <!--主题颜色-->
+    <color name="THEME_COLOR">#ff5700</color>
+    <!--背景灰色-->
+    <color name="BG_GRAY_COLOR">#f8f9fb</color>
+    <!--按钮灰色-->
+    <color name="BTN_GRAY_COLOR">#cccccc</color>
+    <!--蓝色-->
+    <color name="blue">#50a9f8</color>
+
+    <!--发现圈图-->
+    <color name="discover_audit_color">#ee41fc</color>
+    <color name="discover_close_color">#53b3f5</color>
+    <color name="discover_submit_color">#fa3650</color>
+    <color name="discover_no_submit_color">#fcd54c</color>
+    <!--tab选中-->
+    <color name="tab_select_color">#fc581f</color>
+    <!--hint灰色-->
+    <color name="hint_char">#f9c4bc</color>
+
+    <color name="line">#e6e6e6</color>
+    <color name="btnChar">#646566</color>
+    <color name="selectLine">#d72521</color>
+    <color name="charGray">#939495</color>
+    <color name="protocolChar">#575859</color>
+    <color name="tabChar">#8b8c8d</color>
+    <color name="home_bg_gray">#f5f6f7</color>
+    <color name="home_bg_line">#e7e8e9</color>
+    <color name="home_title">#393a3b</color>
+    <color name="normal_selector_grag">#f0f0f0</color>
+    <color name="normal_gray_line">#e2e2e2</color>
+    <color name="bg_user_head">#b81921</color>
+    <color name="guide_btn_color">#fc5644</color>
+    <color name="user_line">#df4c45</color>
+
+    <color name="pickerview_timebtn_nor">#057dff</color>
+    <color name="pickerview_timebtn_pre">#c2daf5</color>
+    <color name="pickerview_bg_topbar">#f5f5f5</color>
+    <color name="pickerview_topbar_title">#000000</color>
+    <color name="pickerview_wheelview_textcolor_out">#a8a8a8</color>
+    <color name="pickerview_wheelview_textcolor_center">#2a2a2a</color>
+    <color name="pickerview_wheelview_textcolor_divider">#d5d5d5</color>
+    <!--覆盖颜色-->
+    <color name="bgColor_overlay">#60000000</color>
+
+    <color name="gray_scale">#ded3d3d3</color>
+    <color name="blue_2196F3">#2196F3</color>
+
+    <!--================================================-->
+    <!--=================原始项目颜色====================-->
+    <!--================================================-->
+    <!--================================================-->
+
+</resources>

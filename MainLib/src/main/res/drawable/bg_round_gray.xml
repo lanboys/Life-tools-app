@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<item>
+	    <shape>
+			<gradient android:startColor="@color/BTN_GRAY_COLOR" android:endColor="@color/BTN_GRAY_COLOR"/>
+			<corners android:topRightRadius="2dp"
+				android:bottomLeftRadius="2dp" android:topLeftRadius="2dp"
+				android:bottomRightRadius="2dp" />
+		</shape>
+	</item>
+</selector>

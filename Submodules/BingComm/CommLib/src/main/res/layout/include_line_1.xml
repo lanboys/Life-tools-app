@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/fl_line_container"
+    android:layout_height="@dimen/main_height_gray_line"
+    android:background="@color/main_color_white"
+    android:paddingLeft="@dimen/join_right_left_margin"
+    android:paddingRight="@dimen/join_right_left_margin"
+>
+    <!--android:background="#e732d8"-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_color_gray_line"
+    />
+</FrameLayout>

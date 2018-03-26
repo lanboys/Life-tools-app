@@ -1,0 +1,51 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- recycleView 分割线 -->
+    <dimen name="dimen_recycleView_divider">10dp</dimen>
+    <dimen name="dimen_recycleView_divider_left_margin">10dp</dimen>
+    <dimen name="dimen_recycleView_divider_right_margin">10dp</dimen>
+
+    <dimen name="dimen_recycleView_divider_10dp">10dp</dimen>
+    <dimen name="dimen_recycleView_divider_left_margin_10dp">10dp</dimen>
+    <dimen name="dimen_recycleView_divider_right_margin_10dp">10dp</dimen>
+
+
+
+
+    <!-- 下拉刷新组件 -->
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+    <dimen name="header_footer_left_right_padding">24dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+    <dimen name="slidingmenu_offset">60dp</dimen>
+    <dimen name="shadow_width">30dp</dimen>
+    <!-- 文字尺寸设置 -->
+    <dimen name="BIG_FONT">17sp</dimen>
+    <dimen name="MIDDLE_FONT">14sp</dimen>
+    <dimen name="VERY_MIDDLE_FONT">13sp</dimen>
+    <dimen name="SMALL_FONT">12sp</dimen>
+    <dimen name="VERY_SMALL_FONT">10sp</dimen>
+    <dimen name="text_size">14sp</dimen>
+
+    <!-- 选项文字大小 需要配合 bools.xml 的 pickerview_customTextSize 为 true 才有效果-->
+    <!--选择器的内容文字大小-->
+    <dimen name="pickerview_textsize">17sp</dimen>
+    <!--选择器确定和取消按钮的文字大小-->
+    <dimen name="pickerview_topbar_btn_textsize">17sp</dimen>
+    <!--标题字体大小-->
+    <dimen name="pickerview_topbar_title_textsize">18sp</dimen>
+    <!-- 顶部按钮栏高度 -->
+    <dimen name="pickerview_topbar_height">40dp</dimen>
+    <!-- 顶部按钮paddingLeft -->
+    <dimen name="pickerview_topbar_paddingleft">10dp</dimen>
+    <!-- 顶部按钮paddingRight -->
+    <dimen name="pickerview_topbar_paddingright">10dp</dimen>
+
+    <!--标题栏高度-->
+    <dimen name="top_titlename">52dp</dimen>
+
+    <!--顶部标题大小-->
+    <dimen name="top_titlefont">18sp</dimen>
+</resources>

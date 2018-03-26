@@ -1,0 +1,137 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.2.21'
+
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+
+        //依赖注入  ButterKnife 8.0.1 ----------- 与lambda不能一起用
+//        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        //依赖注入  ButterKnife 8.0.1
+
+        //开启lambda
+//        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+        //开启lambda
+
+        // 知乎图片选择
+        classpath 'com.novoda:bintray-release:0.5.0'
+        // 知乎图片选择
+
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+allprojects {
+    repositories {
+        jcenter()
+        google()
+        maven { url 'https://dl.bintray.com/lanboys/MavenRepo' }
+        //add begin
+        flatDir {
+            dirs 'libs'
+        }
+        //add end
+
+    }
+}
+// 指定javadoc UTF-8格式
+task javadoc(type: Javadoc) {
+//    options.encoding = "UTF-8"
+//    options.charSet = "UTF-8"
+
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+// 定义版本
+ext {
+    applicationId = "com.bing.lan.sample"
+//    applicationId = "com.bing.lan.commsample"
+
+    versionCode = 100
+    versionName = "1.0.0"
+
+    // Sdk and tools
+    // http://blog.csdn.net/lintax/article/details/51588225
+    // android 4.1.2
+    minSdkVersion = 16
+    targetSdkVersion = 26
+
+    compileSdkVersion = 26
+    buildToolsVersion = "26.0.2"
+
+    // App dependencies
+    supportLibraryVersion = '27.0.2'
+    junitVersion = '4.12'
+    guavaVersion = '19.0'
+
+    //multidex
+    multidexVersion = '1.0.2'
+
+    //butterknife
+    butterknifeVersion = '8.4.0'
+
+    //rx
+//    rxjavaVersion = '1.2.1'
+//    rxandroidVersion = '1.2.1'
+
+    //rx
+    rxjavaVersion = '2.0.1'
+    rxandroidVersion = '2.0.1'
+
+    //retrofit
+    retrofitVersion = '2.3.0'
+    retrofitAdapterVersion = '2.2.0'
+    retrofitGsonVersion = '2.3.0'
+//    retrofitScalarsVersion = '2.3.0'
+    retrofitFastjsonVersion = '2.1.0'
+// 版本不一致容易报错
+// No virtual method log(Ljava/lang/String;)V in class Lokhttp3/internal/Platform;
+// or its super classes (declaration of 'okhttp3.internal.Platform' appears
+// in /data/app/com.juzhongke.cash-2/base.apk:classes44.dex)
+
+    //okHttp
+//    okHttpVersion = '3.8.0'
+    okHttpVersion = '3.6.0'
+
+    //dagger
+    daggerVersion = '2.7'
+
+    //leakCanary
+    leakCanaryVersion = '1.5'
+
+    //blockCanary
+    blockCanaryVersion = '1.5.0'
+
+    //logger
+    loggerVersion = '1.15'
+
+    //indicator
+    viewpagerIndicatorVersion = '2.4.1.1@aar'
+
+    //图片裁剪
+    imageCropVersion = '1.0.1@aar'
+
+    glideVersion = '3.7.0'
+    glideTransformationsVersion = '2.0.1'
+    easypermissionsVersion = '0.2.1'
+
+    collapsingtoolbarVersion = '1.3.0'
+    scrollToRefreshVersion = '1.0.11'
+}

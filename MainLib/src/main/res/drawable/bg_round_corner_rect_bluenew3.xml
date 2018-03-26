@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <gradient android:startColor="@color/BUY_BTN_CHAR" android:endColor="@color/BUY_BTN_CHAR"/>
+            <stroke android:width="0.5dp" android:color="@color/BUY_BTN_CHAR" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+</selector>

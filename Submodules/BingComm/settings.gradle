@@ -1,0 +1,5 @@
+include       ':Sample'/*, ':myapplication12', ':CommSample'*/
+include       ':SubModule:android-crop:lib'
+include       ':SubModule:Matisse:matisse'
+include       ':SubModule:LoadDataLayout:loaddatalayout'
+include       ':CommLib'

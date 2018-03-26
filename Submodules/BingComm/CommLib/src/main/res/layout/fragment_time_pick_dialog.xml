@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:orientation="vertical"
+	android:padding="16dp"
+	android:background="@color/white"
+	android:layout_height="match_parent">
+
+	<TextView
+		android:id="@+id/tv_time_title"
+		android:layout_width="match_parent"
+		android:textColor="@color/color_333"
+		android:textSize="18sp"
+		android:text="选择日期和时间"
+		android:layout_height="wrap_content"/>
+
+	<DatePicker
+		android:id="@+id/date_pick"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:calendarViewShown="false"
+		android:datePickerMode="spinner">
+	</DatePicker>
+
+     <TimePicker
+		android:id="@+id/time_pick"
+		android:layout_width="match_parent"
+		android:timePickerMode="spinner"
+		android:layout_height="wrap_content">
+	</TimePicker>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		<TextView
+			android:id="@+id/tv_conform"
+			android:layout_width="wrap_content"
+			android:background="@drawable/normal_press_selector"
+			android:text="确定"
+			android:textSize="16sp"
+			android:textColor="@color/main_color_blue"
+			android:padding="6dp"
+			android:layout_alignParentRight="true"
+			android:layout_height="wrap_content"/>
+
+		<TextView
+			android:id="@+id/tv_cancel"
+			android:layout_toLeftOf="@id/tv_conform"
+			android:layout_marginRight="20dp"
+			android:layout_width="wrap_content"
+			android:text="取消"
+			android:textSize="16sp"
+			android:textColor="@color/main_color_blue"
+			android:background="@drawable/normal_press_selector"
+			android:padding="6dp"
+			android:layout_height="wrap_content"/>
+
+	</RelativeLayout>
+
+</LinearLayout>

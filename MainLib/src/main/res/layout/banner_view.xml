@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/viewPager_container"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:background="@color/white"
+    android:clipChildren="false"
+>
+
+    <!--// 注意clipChildren属性的使用-->
+    <!--// android:clipChildren的意思：是否限制子View在其范围内，我们将其值设置为false-->
+    <!--// 后那么当子控件的高度高于父控件时也会完全显示,而不会被压缩-->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:clipChildren="false" />
+
+</FrameLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 基本权限 -->
+    <string-array name="basic_runtime_permissions">
+        <item>android.permission.ACCESS_NETWORK_STATE</item>
+        <item>android.permission.INTERNET</item>
+        <item>android.permission.ACCESS_WIFI_STATE</item>
+        <item>android.permission.READ_PHONE_STATE</item>
+    </string-array>
+
+    <!-- amap -->
+    <string-array name="map_runtime_permissions">
+        <!--<item>android.permission.READ_PHONE_STATE</item>-->
+        <item>android.permission.ACCESS_COARSE_LOCATION</item>
+        <item>android.permission.ACCESS_FINE_LOCATION</item>
+        <item>android.permission.ACCESS_LOCATION_EXTRA_COMMANDS</item>
+        <item>android.permission.CHANGE_WIFI_STATE</item>
+    </string-array>
+
+    <!-- 读写存储卡权限 -->
+    <string-array name="sdCard_camera_runtime_permissions">
+        <item>android.permission.READ_EXTERNAL_STORAGE</item>
+        <item>android.permission.WRITE_EXTERNAL_STORAGE</item>
+        <item>android.permission.CAMERA</item>
+    </string-array>
+
+    <!-- 读写存储卡权限 -->
+    <string-array name="sdCard_runtime_permissions">
+        <item>android.permission.READ_EXTERNAL_STORAGE</item>
+        <item>android.permission.WRITE_EXTERNAL_STORAGE</item>
+    </string-array>
+
+
+    <!-- 二维码 / 直播 -->
+    <string-array name="qrcode_runtime_permissions">
+        <item>android.permission.CAMERA</item>
+        <item>android.permission.FLASHLIGHT</item>
+    </string-array>
+
+    <!-- 配置权限，用来记录应用配置信息 -->
+    <string-array name="configured_permissions">
+        <item>android.permission.WRITE_SETTINGS</item>
+    </string-array>
+
+    <!-- 打电话权限 -->
+    <string-array name="call_phone_runtime_permissions">
+        <item>android.permission.CALL_PHONE</item>
+    </string-array>
+
+    <!-- 自动获取验证码权限 -->
+    <string-array name="read_sms_runtime_permissions">
+        <item>android.permission.READ_SMS</item>
+        <item>android.permission.RECEIVE_SMS</item>
+    </string-array>
+
+</resources>

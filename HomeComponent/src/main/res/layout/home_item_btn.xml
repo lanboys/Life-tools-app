@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BG_GRAY"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/icon_home_gonggao"
+            android:visibility="gone" />
+
+        <com.mjn.investment.widget.UPMarqueeView
+            android:id="@+id/home_tongzhi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:visibility="gone"
+        />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:id="@+id/home_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:drawablePadding="8dp"
+            android:drawableTop="@drawable/icon_home_qiandao"
+            android:gravity="center"
+            android:text="平台简介"
+            android:textColor="@color/CHAR_BLACK_COLOR" />
+
+        <TextView
+            android:id="@+id/home_huodong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:drawablePadding="8dp"
+            android:drawableTop="@drawable/icon_home_activity"
+            android:gravity="center"
+            android:text="@string/latest_activity"
+            android:textColor="@color/CHAR_BLACK_COLOR" />
+
+        <!--省略掉了 -->
+        <TextView
+            android:id="@+id/home_qiandao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:drawablePadding="8dp"
+            android:drawableTop="@drawable/icon_home_qiandao"
+            android:gravity="center"
+            android:text="签到有奖"
+            android:textColor="@color/CHAR_BLACK_COLOR"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/home_yaoqing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/icon_home_friend"
+                android:gravity="center"
+                android:text="邀请好友"
+                android:textColor="@color/CHAR_BLACK_COLOR" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-30dp"
+                android:layout_toRightOf="@+id/home_yaoqing"
+                android:background="@drawable/icon_home_friend_songqian"
+                android:gravity="center"
+                android:paddingBottom="3dp"
+                android:text="送钱"
+                android:textColor="@color/white"
+                android:textSize="8dp"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--<ImageView-->
+    <!--android:id="@+id/home_banner"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="10dp"-->
+    <!--android:layout_marginTop="0.5dp"-->
+    <!--android:scaleType="fitXY"-->
+    <!--android:src="@drawable/home_banner" />-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/BG_GRAY" />
+
+    <LinearLayout
+        android:id="@+id/ll_hongbaoorqiandao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/BG_GRAY"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bg_home_item_product"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_hongbaoorqiandao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/BG_GRAY" />
+    </LinearLayout>
+
+
+</LinearLayout>

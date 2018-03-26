@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--android页面进入edittext自动获取焦点，弹出软键盘解决方法-->
+
+    <!--  取消焦点  -->
+    <!--在edittext的父布局中加入上面2个属性-->
+    <!--android:focusable="true"-->
+    <!--android:focusableInTouchMode="true"-->
+
+    <!-- 获取焦点 -->
+    <!--mEt_search_edit.setFocusable(true);-->
+    <!--mEt_search_edit.requestFocus();-->
+
+    <LinearLayout
+        android:id="@+id/ll_container"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#fdfdfe"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="110dp"
+            android:gravity="right"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="10dp"
+            android:textColor="#3a424d"
+            android:textSize="15sp"
+            tools:text="标题"/>
+
+        <!--android:drawableLeft="@drawable/iv_mine_into"-->
+
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:inputType="text"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingRight="12dp"
+            android:textColor="@color/color_333"
+            android:textSize="14sp"
+            tools:hint="标题提示语"/>
+        <!--android:enabled="false"-->
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:visibility="gone"
+            tools:src="@drawable/iv_mine_into"
+            android:layout_marginRight="15dp"
+            tools:visibility="visible"/>
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_line_container"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#fdfdfe"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f0f1f3"/>
+    </FrameLayout>
+</LinearLayout>

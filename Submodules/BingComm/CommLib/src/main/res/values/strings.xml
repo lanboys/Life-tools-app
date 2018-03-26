@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">CommLib</string>
+
+    <string name="reload_text">reload data</string>
+
+    <string name="custom_loading_text">加载中</string>
+
+    <string name="custom_empty_text">暂无相关数据</string>
+    <string name="custom_error_text">加载失败，请稍后重试</string>
+    <string name="custom_no_network_text">上帝关了门窗，还顺便断了网 \n (ㄒoㄒ)/~~</string>
+    <string name="custom_reloadBtn_text">点击重新加载</string>
+
+    <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no
+        more than %2$sM
+    </string>
+
+
+</resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <com.mjn.libs.view.NoScrollViewPager
+        android:id="@+id/view_pager_market"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </com.mjn.libs.view.NoScrollViewPager>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/main_color_background"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        app:tabIndicatorHeight="0dp"
+        app:tabSelectedTextColor="@color/colorPrimary"
+        app:tabTextAppearance="@style/mainTabLayoutTextStyle"
+        app:tabTextColor="#f90303">
+
+    </android.support.design.widget.TabLayout>
+
+
+    <!-- tabPadding 不起作用 -->
+    <!--app:tabPadding="0dp"-->
+
+    <!-- tabTextColor 设置未选中文字的颜色 设置选择器无效  -->
+    <!-- tabSelectedTextColor 设置选中文字的颜色 设置选择器无效  -->
+
+    <!-- 设置了左右方向的padding就可以左右滑动了 -->
+    <!--android:paddingLeft="8dp"-->
+
+</LinearLayout>
+
+
+    <!--<FrameLayout-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:id="@+id/tab_content"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--/>-->

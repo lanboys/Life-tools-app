@@ -1,0 +1,82 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- 修改默认的溢出菜单 -->
+        <!--<item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>-->
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+
+    <!-- 看图片 activity 背景透明 style (布局中不需要再次设置为透明) -->
+    <style name="PictureActivity.transparent" parent="AppTheme.NoActionBar">
+        <!-- 设置背景透明度及其颜色值(必须) -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 设置当前Activity是否透明(必须) -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 设置当前Activity进出方式 -->
+        <!--<item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>-->
+    </style>
+
+
+    <!-- 进度条对话框主题 -->
+    <style name="ProgressDialogTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+
+    <!-- popupwindow 动画 -->
+    <style name="PopupWindowAnimation">
+        <item name="android:windowEnterAnimation">@anim/popup_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/popup_out_anim</item>
+    </style>
+
+    <style name="PopupWindowTipAnimation">
+        <item name="android:windowEnterAnimation">@anim/popup_tip_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/popup_tip_out_anim</item>
+    </style>
+
+
+    <style name="join_item_comm_style">
+
+        <!-- 获取焦点，防止 editText 获取焦点 -->
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+
+        <item name="android:background">@color/main_color_white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/join_item_height</item>
+        <item name="android:paddingRight">@dimen/join_right_left_margin</item>
+        <item name="android:paddingLeft">@dimen/join_right_left_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="CustomTheme" parent="android:Theme.DeviceDefault" tools:ignore="NewApi">
+        <item name="cropImageStyle">@style/Widget.CropImageView</item>
+    </style>
+
+
+    <!-- CropImageView -->
+    <style name="Widget.CropImageView" parent="android:Widget">
+        <item name="showThirds">true</item>
+        <item name="showCircle">true</item>
+        <item name="showHandles">always</item>
+        <item name="highlightColor">@color/main_color_blue</item>
+    </style>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--首页项目加息背景用到了-->
+    <item>
+        <shape>
+            <gradient android:endColor="@color/white" android:startColor="@color/white" />
+            <stroke android:width="0.5dp" android:color="@color/BLUE_THEME" />
+            <corners android:radius="5dp" />
+        </shape>
+    </item>
+</selector>

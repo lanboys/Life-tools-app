@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_product_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/BG_GRAY">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/bg_home_item_product"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/home_product_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:text="新手专享"
+                android:textColor="@color/CHAR_BLACK_COLOR"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_xinshou_jinxianyici"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/home_product_title"
+                android:background="@drawable/bg_jinxianyici"
+                android:padding="3dp"
+                android:text="仅限一次"
+                android:textColor="@color/ORANG_COLOR"
+                android:textSize="13sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/LINE_GRAY_COLOR" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="25dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="预期年化利率"
+                    android:textColor="@color/CHAR_GRAY_COLOR"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/home_product_lixi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left"
+                    android:text="10.0%"
+                    android:textColor="@color/ORANG_COLOR"
+                    android:textSize="35sp" />
+
+                <TextView
+                    android:id="@+id/home_product_lixi2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text=" + 7.0%"
+                    android:textColor="@color/ORANG_COLOR"
+                    android:textSize="25sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="投资期限"
+                    android:textColor="@color/CHAR_GRAY_COLOR"
+                    android:textSize="13sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/home_product_timestirng"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="15dp"
+                        android:text="个月"
+                        android:textColor="@color/ORANG_COLOR"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/home_product_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/home_product_timestirng"
+                        android:text="0"
+                        android:textColor="@color/ORANG_COLOR"
+                        android:textSize="35sp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/home_product_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_round_corner_rect_bluenew2"
+            android:gravity="center"
+            android:text="立即购买"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <!-- TODO 全部隐藏掉了-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/home_product_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/icon_home_duihao"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="30天"
+                android:textColor="@color/CHAR_GRAY_LESS_COLOR"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/home_product_leftMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/icon_home_duihao"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="剩余3000元"
+                android:textColor="@color/CHAR_GRAY_LESS_COLOR"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/home_product_startMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/icon_home_duihao"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="0元起投"
+                android:textColor="@color/CHAR_GRAY_LESS_COLOR"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/home_product_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/icon_home_tuijian"
+        android:visibility="gone" />
+</RelativeLayout>

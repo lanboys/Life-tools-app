@@ -1,0 +1,135 @@
+apply plugin: 'com.android.library'
+//dagger  ButterKnife 8.0.1
+//apply plugin: 'com.neenbedankt.android-apt'
+//dagger  ButterKnife 8.0.1
+apply plugin: 'com.novoda.bintray-release'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+//        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+publish {
+    userOrg = 'lanboys'      // bintray注册的用户名
+    groupId = 'com.bing.lan'
+    repoName = "MavenRepo"
+    artifactId = 'comm'      // bintray创建的package
+    publishVersion = '0.0.2'
+//    website = "https://github.com/lanboys/BingComm"
+}
+
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+//    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    })
+
+    // support
+    compile "com.google.guava:guava:$rootProject.guavaVersion"
+//    testCompile "junit:junit:$rootProject.junitVersion"
+    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.supportLibraryVersion"
+    //compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    //compile "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+    //compile "com.android.support:percent:$rootProject.supportLibraryVersion"
+
+    //查看图片
+    compile 'com.github.chrisbanes.photoview:library:1.2.4'
+
+    // dependency injector
+//    compile "com.google.dagger:dagger:$rootProject.daggerVersion"
+//    provided "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+    // provided 'org.glassfish:javax.annotation:10.0-b28'
+
+    // rx
+    compile "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
+    compile "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+
+    // rxrelay 内部用rxjava2.0
+    compile 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
+    // retrofit
+    compile "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitAdapterVersion"
+//    compile "com.squareup.retrofit2:converter-scalars:$rootProject.retrofitScalarsVersion"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofitGsonVersion"
+    compile "org.ligboy.retrofit2:converter-fastjson-android:$rootProject.retrofitFastjsonVersion"
+
+    compile 'com.google.code.gson:gson:2.7'
+
+    // ok http
+    compile "com.squareup.okhttp3:okhttp:$rootProject.okHttpVersion"
+    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okHttpVersion"
+
+    // logger
+//    compile "com.orhanobut:logger:$rootProject.loggerVersion"
+
+    //glide
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    // 图片裁剪 crop
+    // compile "com.soundcloud.android:android-crop:$rootProject.imageCropVersion"
+    api project(':Submodules:BingComm:SubModule:android-crop:lib')
+    //知乎图片选择库
+    //    compile 'com.zhihu.android:matisse:0.4.3'
+    api project(':Submodules:BingComm:SubModule:Matisse:matisse')
+    //公共页面控制
+    api project(':Submodules:BingComm:SubModule:LoadDataLayout:loaddatalayout')
+
+    //时间 地区选择器
+    compile 'com.contrarywind:Android-PickerView:3.2.4'
+    //  地区选择器
+//    compile 'liji.library.dev:citypickerview:1.0.0'
+
+    // butter knife
+    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+//    apt "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
+    //下拉刷新
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    // multi dex (分包)
+    compile "com.android.support:multidex:$rootProject.multidexVersion"
+
+    // RecyclerView
+    // 侧滑删除
+    compile 'com.yanzhenjie:recyclerview-swipe:1.0.4'
+    // 分割线
+    compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
+
+//   BRVAH是一个强大的RecyclerAdapter框架  http://www.jianshu.com/p/b343fcff51b0
+//    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.27'
+//    RecyclerView粘性标签库  https://github.com/oubowu/PinnedSectionItemDecoration
+//    compile 'com.oushangfeng:PinnedSectionItemDecoration:1.2.4'
+
+    //万能的Adapter
+    //compile 'com.zhy:base-rvadapter:3.0.3'
+    //    compile 'com.jude:easyrecyclerview:3.5.7'
+    // RecyclerView
+
+    compile 'com.squareup:otto:1.3.8'
+
+}

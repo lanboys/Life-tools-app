@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 自定义toolbar -->
+    <declare-styleable name="MyToolbar">
+        <attr name="toolbar_title" format="string"/>
+        <attr name="toolbar_title_centerInParent" format="boolean"/>
+        <attr name="toolbar_title_marginLeft" format="dimension"/>
+        <attr name="toolbar_title_marginRight" format="dimension"/>
+        <attr name="toolbar_title_gravity">
+            <!-- Push object to the top of its container, not changing its size. -->
+            <flag name="top" value="0x30"/>
+            <!-- Push object to the bottom of its container, not changing its size. -->
+            <flag name="bottom" value="0x50"/>
+            <!-- Push object to the left of its container, not changing its size. -->
+            <flag name="left" value="0x03"/>
+            <!-- Push object to the right of its container, not changing its size. -->
+            <flag name="right" value="0x05"/>
+            <!-- Place object in the vertical center of its container, not changing its size. -->
+            <flag name="center_vertical" value="0x10"/>
+            <!-- Place object in the horizontal center of its container, not changing its size. -->
+            <flag name="center_horizontal" value="0x01"/>
+            <!-- Place the object in the center of its container in both the vertical and horizontal axis, not changing its size. -->
+            <flag name="center" value="0x11"/>
+            <!-- Push object to the beginning of its container, not changing its size. -->
+            <flag name="start" value="0x00800003"/>
+            <!-- Push object to the end of its container, not changing its size. -->
+            <flag name="end" value="0x00800005"/>
+        </attr>
+    </declare-styleable>
+
+    <!-- 带标签按钮 -->
+    <declare-styleable name="LabelButton">
+        <attr name="button_text" format="string"/>
+        <attr name="button_text_color" format="color|reference"/>
+        <attr name="button_background" format="color|reference"/>
+        <attr name="shade_background" format="color|reference"/>
+        <attr name="shade_alpha" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="EditTextInputView">
+
+        <attr name="edit_hint1" format="string"/>
+        <attr name="image1" format="reference"/>
+        <attr name="edit_enable1" format="boolean"/>
+        <attr name="edit_cashier1" format="boolean"/>
+
+        <attr name="edit_maxLength1" format="integer"/>
+        <attr name="edit_digits1" format="string"/>
+
+        <attr name="text_string1" format="string"/>
+        <attr name="text_visibility1" format="enum">
+            <enum name="visible" value="0"/>
+            <enum name="invisible" value="4"/>
+            <enum name="gone" value="8"/>
+        </attr>
+
+        <attr name="edit_inputType1" format="enum">
+            <!-- 普通文本 -->
+            <enum name="text" value="1"/>
+            <!-- 电话 -->
+            <enum name="phone" value="2"/>
+            <!-- 密码 -->
+            <enum name="textPassword" value="128"/>
+            <!-- 输入现金 -->
+            <enum name="numberDecimal" value="8192"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="EditTextInputLayout">
+
+        <attr name="line_show" format="boolean"/>
+
+
+        <attr name="title_marginLeft" format="dimension"/>
+        <attr name="title_marginRight" format="dimension"/>
+        <attr name="title_drawableLeft" format="reference"/>
+        <attr name="title_drawableLeft_padding" format="dimension"/>
+        <attr name="title_color" format="color"/>
+        <attr name="title_text_size" format="dimension"/>
+        <attr name="title_text" format="string"/>
+        <attr name="title" format="string"/>
+
+
+        <attr name="image_width" format="dimension"/>
+        <attr name="image_height" format="dimension"/>
+        <attr name="image_src" format="reference"/>
+        <attr name="image" format="reference"/>
+
+        <!-- 整个布局的高度 -->
+        <attr name="edit_layout_height" format="dimension"/>
+        <attr name="edit_layout_background" format="color|reference"/>
+
+        <attr name="edit_paddingLeft" format="dimension"/>
+        <attr name="edit_paddingRight" format="dimension"/>
+        <attr name="edit_text_size" format="dimension"/>
+        <attr name="edit_text" format="string"/>
+        <attr name="edit_color" format="color"/>
+        <attr name="edit_hint_color" format="color"/>
+        <attr name="edit_hint" format="string"/>
+        <attr name="edit_enable" format="boolean"/>
+        <attr name="edit_cashier" format="boolean"/>
+        <attr name="edit_maxLength" format="integer"/>
+        <attr name="edit_digits" format="string"/>
+
+        <!--public static final int VISIBLE = 0;-->
+        <!--public static final int INVISIBLE = 4;-->
+        <!--public static final int GONE = 8;-->
+
+        <attr name="image_visibility" format="enum">
+            <enum name="visible" value="0"/>
+            <enum name="invisible" value="4"/>
+            <enum name="gone" value="8"/>
+        </attr>
+
+        <attr name="title_visibility" format="enum">
+            <enum name="visible" value="0"/>
+            <enum name="invisible" value="4"/>
+            <enum name="gone" value="8"/>
+        </attr>
+
+        <!-- 编辑框的位置 -->
+        <attr name="edit_gravity">
+            <!-- Push object to the top of its container, not changing its size. -->
+            <flag name="top" value="0x30"/>
+            <!-- Push object to the bottom of its container, not changing its size. -->
+            <flag name="bottom" value="0x50"/>
+            <!-- Push object to the left of its container, not changing its size. -->
+            <flag name="left" value="0x03"/>
+            <!-- Push object to the right of its container, not changing its size. -->
+            <flag name="right" value="0x05"/>
+            <!-- Place object in the vertical center of its container, not changing its size. -->
+            <flag name="center_vertical" value="0x10"/>
+            <!-- Place object in the horizontal center of its container, not changing its size. -->
+            <flag name="center_horizontal" value="0x01"/>
+            <!-- Place the object in the center of its container in both the vertical and horizontal axis, not changing its size. -->
+            <flag name="center" value="0x11"/>
+            <!-- Push object to the beginning of its container, not changing its size. -->
+            <flag name="start" value="0x00800003"/>
+            <!-- Push object to the end of its container, not changing its size. -->
+            <flag name="end" value="0x00800005"/>
+        </attr>
+
+        <!--http://www.jb51.net/article/90004.htm-->
+        <!--android:inputType="phone"-->
+        <attr name="edit_inputType" format="enum">
+            <!-- 普通文本 -->
+            <enum name="text" value="1"/>
+            <!-- 电话 -->
+            <enum name="phone" value="2"/>
+            <!-- 密码 -->
+            <enum name="textPassword" value="128"/>
+            <!-- 输入现金 -->
+            <enum name="numberDecimal" value="8192"/>
+        </attr>
+
+
+        <!--int TYPE_CLASS_DATETIME = 4;-->
+        <!--int TYPE_CLASS_NUMBER = 2;-->
+
+        <!--int TYPE_CLASS_PHONE = 3;-->
+        <!--int TYPE_CLASS_TEXT = 1;-->
+
+        <!--int TYPE_DATETIME_VARIATION_DATE = 16;-->
+        <!--int TYPE_DATETIME_VARIATION_NORMAL = 0;-->
+        <!--int TYPE_DATETIME_VARIATION_TIME = 32;-->
+        <!--int TYPE_MASK_CLASS = 15;-->
+        <!--int TYPE_MASK_FLAGS = 16773120;-->
+        <!--int TYPE_MASK_VARIATION = 4080;-->
+        <!--int TYPE_NULL = 0;-->
+        <!--int TYPE_NUMBER_FLAG_DECIMAL = 8192;-->
+        <!--int TYPE_NUMBER_FLAG_SIGNED = 4096;-->
+        <!--int TYPE_NUMBER_VARIATION_NORMAL = 0;-->
+        <!--int TYPE_NUMBER_VARIATION_PASSWORD = 16;-->
+        <!--int TYPE_TEXT_FLAG_AUTO_COMPLETE = 65536;-->
+        <!--int TYPE_TEXT_FLAG_AUTO_CORRECT = 32768;-->
+        <!--int TYPE_TEXT_FLAG_CAP_CHARACTERS = 4096;-->
+        <!--int TYPE_TEXT_FLAG_CAP_SENTENCES = 16384;-->
+        <!--int TYPE_TEXT_FLAG_CAP_WORDS = 8192;-->
+        <!--int TYPE_TEXT_FLAG_IME_MULTI_LINE = 262144;-->
+        <!--int TYPE_TEXT_FLAG_MULTI_LINE = 131072;-->
+        <!--int TYPE_TEXT_FLAG_NO_SUGGESTIONS = 524288;-->
+        <!--int TYPE_TEXT_VARIATION_EMAIL_ADDRESS = 32;-->
+        <!--int TYPE_TEXT_VARIATION_EMAIL_SUBJECT = 48;-->
+        <!--int TYPE_TEXT_VARIATION_FILTER = 176;-->
+        <!--int TYPE_TEXT_VARIATION_LONG_MESSAGE = 80;-->
+        <!--int TYPE_TEXT_VARIATION_NORMAL = 0;-->
+        <!--int TYPE_TEXT_VARIATION_PASSWORD = 128;-->
+        <!--int TYPE_TEXT_VARIATION_PERSON_NAME = 96;-->
+        <!--int TYPE_TEXT_VARIATION_PHONETIC = 192;-->
+        <!--int TYPE_TEXT_VARIATION_POSTAL_ADDRESS = 112;-->
+        <!--int TYPE_TEXT_VARIATION_SHORT_MESSAGE = 64;-->
+        <!--int TYPE_TEXT_VARIATION_URI = 16;-->
+        <!--int TYPE_TEXT_VARIATION_VISIBLE_PASSWORD = 144;-->
+        <!--int TYPE_TEXT_VARIATION_WEB_EDIT_TEXT = 160;-->
+        <!--int TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS = 208;-->
+        <!--int TYPE_TEXT_VARIATION_WEB_PASSWORD = 224;-->
+
+    </declare-styleable>
+
+
+    <declare-styleable name="FlikerProgressBar">
+        <attr name="textSize" format="dimension"/>
+        <attr name="loadingColor" format="color"/>
+        <attr name="stopColor" format="color"/>
+        <attr name="finishColor" format="color"/>
+        <attr name="radius" format="dimension"/>
+        <attr name="borderWidth" format="dimension"/>
+    </declare-styleable>
+
+    <!-- 添加购物车 -->
+    <declare-styleable name="ShoppingView">
+        <attr name="sv_bg_color" format="color"/>
+        <attr name="sv_text" format="string"/>
+        <attr name="sv_text_size" format="dimension"/>
+        <attr name="sv_duration" format="integer"/>
+    </declare-styleable>
+
+
+</resources>
