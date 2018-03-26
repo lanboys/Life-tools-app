@@ -20,7 +20,7 @@
     <SeekBar
         android:id="@+id/web_sbr"
         android:layout_width="match_parent"
-        android:layout_height="12dp"
+        android:layout_height="2dp"
         android:focusable="false"
         android:paddingEnd="0dp"
         android:paddingStart="0dp"

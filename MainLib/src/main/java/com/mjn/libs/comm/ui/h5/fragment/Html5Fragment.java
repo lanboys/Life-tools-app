@@ -125,8 +125,9 @@ public class Html5Fragment extends MainLibFragment<IHtml5Contract.IHtml5Presente
             log.i("===== title ======: " + title);
             if (TextUtils.isEmpty(title)) {
                 title = "加载中...";
-                setToolBar(mToolbar, title, true, 0);
             }
+            setToolBar(mToolbar, title, true, 0);
+
             if (!TextUtils.isEmpty(url)) {
                 if (url.toLowerCase().startsWith("mcyd")) {
                     new WebBackNative().parseUrl(Uri.parse(url));

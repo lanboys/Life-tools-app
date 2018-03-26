@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 public abstract class BaseRecyclerAdapter<T> extends
-        RecyclerView.Adapter< BaseViewHolder> {
+        RecyclerView.Adapter<BaseViewHolder<T>> {
 
     public static final int ITEM_TYPE_NORMAL = 1000;
     /*数据集合*/
@@ -24,7 +24,7 @@ public abstract class BaseRecyclerAdapter<T> extends
     /**
      * 返回BaseViewHolder的子类
      */
-    public abstract  BaseViewHolder createViewHolder(View itemView, int type);
+    public abstract BaseViewHolder<T> createViewHolder(View itemView, int type);
 
     /**
      * 设置事件单击监听器
@@ -39,10 +39,10 @@ public abstract class BaseRecyclerAdapter<T> extends
     }
 
     @Override
-    public  BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         final View itemView = inflater.inflate(getItemLayoutResId(viewType), parent, false);
-        final  BaseViewHolder holder = createViewHolder(itemView, viewType);
+        final BaseViewHolder<T> holder = createViewHolder(itemView, viewType);
         if (mListener != null) {
             itemView.setOnClickListener(
                     new View.OnClickListener() {
@@ -62,7 +62,7 @@ public abstract class BaseRecyclerAdapter<T> extends
     }
 
     @Override
-    public void onBindViewHolder( BaseViewHolder holder, int position) {
+    public void onBindViewHolder(BaseViewHolder<T> holder, int position) {
         holder.fillData(data.get(position), position);
     }
 

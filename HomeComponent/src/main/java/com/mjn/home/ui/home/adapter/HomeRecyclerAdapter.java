@@ -8,14 +8,19 @@ import com.bing.lan.comm.adapter.BaseRecyclerAdapter;
 import com.bing.lan.comm.adapter.BaseViewHolder;
 import com.mjn.home.R;
 import com.mjn.home.ui.home.holder.BannerHolder;
+import com.mjn.home.ui.home.holder.BottomViewHolder;
+import com.mjn.home.ui.home.holder.BtnViewHolder;
+import com.mjn.home.ui.home.holder.NewBottomViewHolder;
+import com.mjn.home.ui.home.holder.ProductPreViewHolder;
+import com.mjn.home.ui.home.holder.ProductViewHolder;
 import com.mjn.libs.comm.bean.IHomeItemBean;
 
 import static com.mjn.libs.comm.bean.IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BANNER;
 import static com.mjn.libs.comm.bean.IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BOTTOM;
-import static com.mjn.libs.comm.bean.IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BOTTOMGUIDE;
+import static com.mjn.libs.comm.bean.IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BOTTOM_GUIDE;
 import static com.mjn.libs.comm.bean.IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BTN;
-import static com.mjn.libs.comm.bean.IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_HONGBAOQIANDAO;
-import static com.mjn.libs.comm.bean.IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_PREPRODUCT;
+import static com.mjn.libs.comm.bean.IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_HONG_BAO_QIAN_DAO;
+import static com.mjn.libs.comm.bean.IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_PRE_PRODUCT;
 import static com.mjn.libs.comm.bean.IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_PRODUCT;
 
 /**
@@ -35,16 +40,16 @@ public class HomeRecyclerAdapter extends BaseRecyclerAdapter<IHomeItemBean> {
             case HOME_ITEM_TYPE_BANNER:
                 return R.layout.home_item_newbanner;
             case HOME_ITEM_TYPE_BTN:
-                return 0;
-            case HOME_ITEM_TYPE_PRODUCT:
-                return 0;
+                return R.layout.home_item_btn;
             case HOME_ITEM_TYPE_BOTTOM:
-                return 0;
-            case HOME_ITEM_TYPE_PREPRODUCT:
-                return 0;
-            case HOME_ITEM_TYPE_BOTTOMGUIDE:
-                return 0;
-            case HOME_ITEM_TYPE_HONGBAOQIANDAO:
+                return R.layout.home_item_bottom;
+            case HOME_ITEM_TYPE_PRODUCT:
+                return R.layout.home_item_product;
+            case HOME_ITEM_TYPE_PRE_PRODUCT:
+                return R.layout.home_item_newproduct;
+            case HOME_ITEM_TYPE_BOTTOM_GUIDE:
+                return R.layout.home_item_bottom_image;
+            case HOME_ITEM_TYPE_HONG_BAO_QIAN_DAO:
                 return 0;
         }
         return 0;
@@ -63,16 +68,16 @@ public class HomeRecyclerAdapter extends BaseRecyclerAdapter<IHomeItemBean> {
             case HOME_ITEM_TYPE_BANNER:
                 return new BannerHolder(itemView, mOnHomeClickCallBack);
             case HOME_ITEM_TYPE_BTN:
-                return null;
-            case HOME_ITEM_TYPE_PRODUCT:
-                return null;
+                return new BtnViewHolder(itemView, mOnHomeClickCallBack);
             case HOME_ITEM_TYPE_BOTTOM:
-                return null;
-            case HOME_ITEM_TYPE_PREPRODUCT:
-                return null;
-            case HOME_ITEM_TYPE_BOTTOMGUIDE:
-                return null;
-            case HOME_ITEM_TYPE_HONGBAOQIANDAO:
+                return new BottomViewHolder(itemView, mOnHomeClickCallBack);
+            case HOME_ITEM_TYPE_PRODUCT:
+                return new ProductViewHolder(itemView, mOnHomeClickCallBack);
+            case HOME_ITEM_TYPE_PRE_PRODUCT:
+                return new ProductPreViewHolder(itemView, mOnHomeClickCallBack);
+            case HOME_ITEM_TYPE_BOTTOM_GUIDE:
+                return new NewBottomViewHolder(itemView, mOnHomeClickCallBack);
+            case HOME_ITEM_TYPE_HONG_BAO_QIAN_DAO:
                 return null;
         }
         return null;
@@ -102,6 +107,10 @@ public class HomeRecyclerAdapter extends BaseRecyclerAdapter<IHomeItemBean> {
 
     public interface OnHomeClickCallBack {
 
-        void onBannerClick(boolean isToHtml5, Bundle bundle);
+        void onClickToHtml5Pager(Bundle bundle);
+
+        void onClickToLoginPager();
+
+        void onClickToActivityCenterPager();
     }
 }

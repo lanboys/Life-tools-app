@@ -57,7 +57,7 @@ public class BannerView extends FrameLayout {
     private boolean isAutoScroll;
 
     private View mRootView;
-    //private Handler mHandler = new Handler(Looper.getMainLooper());
+    private Handler mHandler = new Handler(Looper.getMainLooper());
     private AutoScrollTask mScrollTask;
     private long mRecentTouchTime;
 
@@ -92,6 +92,7 @@ public class BannerView extends FrameLayout {
         a.recycle();
     }
 
+
     private void initView() {
         mRootView = LayoutInflater.from(getContext()).inflate(R.layout.banner_view, this);
         mViewPager = (ViewPager) mRootView.findViewById(R.id.viewPager);
@@ -105,45 +106,11 @@ public class BannerView extends FrameLayout {
         params.width = (int) (getScreenWidth() * pagePercent);
         params.gravity = Gravity.CENTER;
         mViewPager.setLayoutParams(params);
-        //设置页面边距
         mViewPager.setPageMargin(pageMargin);
         mViewPager.setPageTransformer(false, new BannerPageTransformer());
-        //mViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
-        //    @Override
-        //    public void transformPage(View page, float position) {
-        //        Log.e(TAG, "transformPage: ===========================");
-        //        Log.e(TAG, "transformPage: position=" + position);
-        //        // 不同位置的缩放和透明度
-        //        float scale = (position < 0) ? ((1 - scaleMin) * position + 1) : ((scaleMin - 1) * position + 1);
-        //        float alpha = (position < 0) ? ((1 - alphaMin) * position + 1) : ((alphaMin - 1) * position + 1);
-        //        // 保持左右两边的图片位置中心
-        //        if (position < 0) {
-        //            ViewCompat.setPivotX(page, page.getWidth());
-        //            ViewCompat.setPivotY(page, page.getHeight() / 2);
-        //        } else {
-        //            ViewCompat.setPivotX(page, 0);
-        //            ViewCompat.setPivotY(page, page.getHeight() / 2);
-        //        }
-        //        Log.e(TAG, "transformPage: scale=" + scale);
-        //        ViewCompat.setScaleX(page, scale);
-        //        ViewCompat.setScaleY(page, scale);
-        //        ViewCompat.setAlpha(page, Math.abs(alpha));
-        //
-        //        //if (Math.abs(position) == 1) {
-        //        //    position = 1;
-        //        //}
-        //        //final float normalizedPosition = Math.abs(Math.abs(position) - 1);
-        //        //Log.e(TAG, "transformPage: normalizedPosition=" + normalizedPosition);
-        //        //float  scale1  = normalizedPosition / 2 + 0.5f;
-        //        //Log.e(TAG, "transformPage: scale=" + scale1);
-        //        //
-        //        //page.setScaleX(scale1 );
-        //        //page.setScaleY(scale1 );
-        //    }
-        //});
-        //设置缓存图片数量
         mViewPager.setOffscreenPageLimit(5);
     }
+
 
     private void initEvent() {
         mViewPager.setOnTouchListener(new OnTouchListener() {
@@ -170,26 +137,24 @@ public class BannerView extends FrameLayout {
         });
     }
 
+
     private int getScreenWidth() {
         return ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
     }
+
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         // 视图初始化完毕，开始轮播任务
-        if (mScrollTask == null)
-            mScrollTask = new AutoScrollTask();
-        if (isAutoScroll)
-            startAutoScroll();
+        if (mScrollTask == null) mScrollTask = new AutoScrollTask();
+        if (isAutoScroll) startAutoScroll();
     }
 
     /**
      * 自动轮播任务
      */
     private class AutoScrollTask implements Runnable {
-
-        private Handler mHandler = new Handler(Looper.getMainLooper());
 
         @Override
         public void run() {
@@ -232,22 +197,14 @@ public class BannerView extends FrameLayout {
                     // 动画效果与ViewPager的一致
                     new Interpolator() {
                         public float getInterpolation(float t) {
-                            Log.e(BannerView.TAG, "----------------------");
-                            Log.e(BannerView.TAG, "t: " + t);
                             t -= 1.0f;
-                            Log.e(BannerView.TAG, "t: " + t);
-                            float v = t * t * t * t * t + 1.0f;
-                            Log.e(BannerView.TAG, "v: " + v);
-                            return v;
+                            return t * t * t * t * t + 1.0f;
                         }
                     }) {
 
                 @Override
                 public void startScroll(int startX, int startY, int dx,
                         int dy, int duration) {
-                    Log.e(BannerView.TAG, "duration---------------------" );
-                    Log.e(BannerView.TAG, "duration: " + duration);
-
                     // 如果手动滚动,则加速滚动
                     // TODO 使用这种设置极不稳定，需要抽离
                     if (System.currentTimeMillis() - mRecentTouchTime > mScrollDuration && isAnimScroll) {
@@ -256,9 +213,8 @@ public class BannerView extends FrameLayout {
                     } else {
                         // 手势滚动
                         duration /= 2;
-                    }
-                    Log.e(BannerView.TAG, "duration: " + duration);
 
+                    }
                     super.startScroll(startX, startY, dx, dy, duration);
                 }
 
@@ -269,7 +225,7 @@ public class BannerView extends FrameLayout {
                 }
             };
             mField.set(mViewPager, mScroller);
-        } catch (NoSuchFieldException | IllegalArgumentException  |  IllegalAccessException  e) {
+        } catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }
@@ -280,6 +236,7 @@ public class BannerView extends FrameLayout {
         return super.onInterceptTouchEvent(ev);
     }
 
+
     /**
      * ViewPager Item动画转换类
      */
@@ -289,8 +246,12 @@ public class BannerView extends FrameLayout {
         public void transformPage(View page, float position) {
             Log.d(TAG, "transformPage: position=" + position);
             // 不同位置的缩放和透明度
-            float scale = (position < 0) ? ((1 - scaleMin) * position + 1) : ((scaleMin - 1) * position + 1);
-            float alpha = (position < 0) ? ((1 - alphaMin) * position + 1) : ((alphaMin - 1) * position + 1);
+            float scale = (position < 0)
+                    ? ((1 - scaleMin) * position + 1)
+                    : ((scaleMin - 1) * position + 1);
+            float alpha = (position < 0)
+                    ? ((1 - alphaMin) * position + 1)
+                    : ((alphaMin - 1) * position + 1);
             // 保持左右两边的图片位置中心
             if (position < 0) {
                 ViewCompat.setPivotX(page, page.getWidth());
@@ -305,6 +266,7 @@ public class BannerView extends FrameLayout {
             ViewCompat.setAlpha(page, Math.abs(alpha));
         }
     }
+
 
     /**
      * ==================================API==================================
@@ -324,8 +286,7 @@ public class BannerView extends FrameLayout {
      * 开启自动轮播
      */
     public void startAutoScroll() {
-        if (mScrollTask == null)
-            return;
+        if (mScrollTask == null) return;
         mScrollTask.start();
         setAnimationScroll((int) mAnimDuration);
         Log.d(TAG, "startAutoScroll");
@@ -335,8 +296,7 @@ public class BannerView extends FrameLayout {
      * 停止自动轮播
      */
     public void stopAutoScroll() {
-        if (mScrollTask == null)
-            return;
+        if (mScrollTask == null) return;
         mScrollTask.stop();
         Log.d(TAG, "stopAutoScroll");
     }
@@ -356,8 +316,7 @@ public class BannerView extends FrameLayout {
      * @param size
      */
     public void resetCurrentPosition(int size) {
-        if (size == 0)
-            return;
+        if (size == 0) return;
         // 去除动画
         // isAnimScroll(false);
         mViewPager.setCurrentItem(size * 1000);

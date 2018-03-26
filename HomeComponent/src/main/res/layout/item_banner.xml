@@ -9,7 +9,7 @@
     <com.mjn.libs.view.banner.RoundAngleImageView
         android:id="@+id/pageImage"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="140dp"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         app:roundHeight="8dp"

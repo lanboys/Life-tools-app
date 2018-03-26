@@ -21,7 +21,7 @@
             android:src="@drawable/icon_home_gonggao"
             android:visibility="gone" />
 
-        <com.mjn.investment.widget.UPMarqueeView
+        <com.mjn.libs.view.UPMarqueeView
             android:id="@+id/home_tongzhi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="140dp"
+    android:layout_height="160dp"
     android:background="@color/white"
     android:orientation="vertical">
 
     <com.mjn.libs.view.banner.BannerView
         android:id="@+id/bannerView"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:layout_marginTop="20dp"
         android:background="@color/white"
@@ -20,7 +21,7 @@
         app:bannerPageMargin="10dp"
         app:bannerPagePercent="0.8"
         app:bannerPageScale="0.8"
-        app:bannerScrollDuration="4000" />
+        app:bannerScrollDuration="4000"/>
 
 
 </RelativeLayout>

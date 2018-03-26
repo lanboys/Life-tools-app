@@ -13,6 +13,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.mjn.home.R;
 import com.mjn.home.ui.home.adapter.HomeRecyclerAdapter;
 import com.mjn.home.ui.home.bean.BannerBean;
+import com.mjn.home.ui.home.bean.HomeBtnBean;
 import com.mjn.libs.base.MainLibFragment;
 import com.mjn.libs.comm.bean.Adv;
 import com.mjn.libs.comm.bean.Home;
@@ -89,6 +90,7 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
 
         mLoadDataLayout = mPullRefreshRecycler.getRefreshableView();
         mLoadDataLayout.setStatus(LoadDataLayout.SUCCESS);
+
         mRecyclerView = mPullRefreshRecycler.getRealRefreshableView();
         mRecyclerView.addItemDecoration(
                 new HorizontalDividerItemDecoration.Builder(getActivity())
@@ -123,20 +125,31 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
     public void onUpdateSuccess(Home home) {
         List<Adv> bannerList = home.getBannerList();
         BannerBean bannerBean = new BannerBean(bannerList, IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BANNER);
+        HomeBtnBean homeBtnBean = new HomeBtnBean(home.getPlatformDescUrl(), IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BTN);
+
         ArrayList<IHomeItemBean> list = new ArrayList<>();
         list.add(bannerBean);
+        list.add(homeBtnBean);
+
         mAdapter.setDataAndRefresh(list);
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onBannerClick(boolean isToHtml5, Bundle bundle) {
-        if (isToHtml5) {
-            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-            intent.putExtra(WebViewCons.WEBVIEW_PARAMS_NAME, bundle);
-            startActivity(intent, false, true);
-        } else {
-            startActivity(LoginActivity.class, false, true);
-        }
+    public void onClickToHtml5Pager(Bundle bundle) {
+
+        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+        intent.putExtra(WebViewCons.WEBVIEW_PARAMS_NAME, bundle);
+        startActivity(intent, false, true);
+    }
+
+    @Override
+    public void onClickToLoginPager() {
+        startActivity(LoginActivity.class, false, true);
+    }
+
+    @Override
+    public void onClickToActivityCenterPager() {
+        showError("去活动中心页面");
     }
 }
