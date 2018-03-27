@@ -64,9 +64,11 @@ public class BannerHolder extends BaseViewHolder<IHomeItemBean>
                     Integer userId = AppSpDataUtil.getInstance().getUserBean().getUserId();
                     // 拼接参数用？还是&的区分
                     if (destUrl.contains("?")) {
-                        bundle.putString("url", destUrl + "&token=" + SPUtil.getInstance().getString("token") + "&userId=" + userId + "&isLogin=1");
+                        bundle.putString("url", destUrl + "&token=" + SPUtil.getInstance().getString("token")
+                                + "&userId=" + userId + "&isLogin=1");
                     } else {
-                        bundle.putString("url", destUrl + "?token=" + SPUtil.getInstance().getString("token") + "&userId=" + userId + "&isLogin=1");
+                        bundle.putString("url", destUrl + "?token=" + SPUtil.getInstance().getString("token")
+                                + "&userId=" + userId + "&isLogin=1");
                     }
                 } else {
                     if (destUrl.contains("?")) {

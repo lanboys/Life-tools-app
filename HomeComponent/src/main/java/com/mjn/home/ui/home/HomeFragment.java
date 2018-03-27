@@ -1,7 +1,6 @@
 package com.mjn.home.ui.home;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,11 +16,8 @@ import com.mjn.libs.comm.bean.Adv;
 import com.mjn.libs.comm.bean.Home;
 import com.mjn.libs.comm.bean.IHomeItemBean;
 import com.mjn.libs.comm.bean.IProduct;
-import com.mjn.libs.comm.ui.h5.activity.WebViewActivity;
 import com.mjn.libs.comm.ui.login.LoginActivity;
-import com.mjn.libs.cons.WebViewCons;
 import com.mjn.libs.utils.SPUtil;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,13 +89,13 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
         mLoadDataLayout.setStatus(LoadDataLayout.SUCCESS);
 
         mRecyclerView = mPullRefreshRecycler.getRealRefreshableView();
-        mRecyclerView.addItemDecoration(
-                new HorizontalDividerItemDecoration.Builder(getActivity())
-                        .color(Color.TRANSPARENT)
-                        .sizeResId(R.dimen.dimen_recycleView_divider_10dp)
-                        .marginResId(R.dimen.dimen_recycleView_divider_left_margin_10dp,
-                                R.dimen.dimen_recycleView_divider_right_margin_10dp)
-                        .build());
+        //mRecyclerView.addItemDecoration(
+        //        new HorizontalDividerItemDecoration.Builder(getActivity())
+        //                .color(Color.TRANSPARENT)
+        //                .sizeResId(R.dimen.dimen_recycleView_divider_10dp)
+        //                .marginResId(R.dimen.dimen_recycleView_divider_left_margin_10dp,
+        //                        R.dimen.dimen_recycleView_divider_right_margin_10dp)
+        //                .build());
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -208,10 +204,7 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
 
     @Override
     public void onClickToHtml5Pager(Bundle bundle) {
-
-        Intent intent = new Intent(getActivity(), WebViewActivity.class);
-        intent.putExtra(WebViewCons.WEBVIEW_PARAMS_NAME, bundle);
-        startActivity(intent, false, true);
+        toHtml5Pager(bundle);
     }
 
     @Override

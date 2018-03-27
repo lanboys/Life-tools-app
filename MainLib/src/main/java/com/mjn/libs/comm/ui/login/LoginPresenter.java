@@ -1,6 +1,8 @@
 package com.mjn.libs.comm.ui.login;
 
+import com.mjn.libs.api.ResponseListDataResult;
 import com.mjn.libs.base.vcode.GetVcodePresenter;
+import com.mjn.libs.comm.bean.IUser;
 
 import static com.mjn.libs.cons.RequestActionCons.ACTION_LOGIN;
 
@@ -26,10 +28,14 @@ public class LoginPresenter
     public void onSuccess(int action, Object data) {
         super.onSuccess(action, data);
         switch (action) {
-        }
-        //showError("登录成功");
+            case ACTION_LOGIN:
+                ResponseListDataResult<IUser> listDataResult = (ResponseListDataResult<IUser>) data;
+                IUser iUser = listDataResult.getList().get(0);
+                showToast(listDataResult.getMessage());
+                mView.onLoginSuccess(iUser);
 
-        log.i("onSuccess(): " + data.toString());
+                break;
+        }
     }
 
     @Override

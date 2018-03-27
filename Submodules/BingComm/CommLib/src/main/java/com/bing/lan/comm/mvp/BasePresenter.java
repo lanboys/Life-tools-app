@@ -139,7 +139,11 @@ public abstract class BasePresenter<
     @Override
     public void onError(int action, Throwable e) {
         if (AppConfig.LOG_DEBUG) {// 测试环境显示
-            onException(action, e);
+            onDebugException(action, e);
+        } else {
+            if (e instanceof BasePresenter.MvpHttpException) {
+                showError(e.getMessage());
+            }
         }
         if (mView != null) {
             mView.setLoadDataLayoutStatus(LoadDataLayout.ERROR);
@@ -153,11 +157,11 @@ public abstract class BasePresenter<
     /**
      * 请求异常
      */
-    private void onException(int action, Throwable e) {
+    private void onDebugException(int action, Throwable e) {
         if (e == null || mView == null) {
             return;
         }
-        if (e instanceof MvpHttpException) {//Null is not a valid element
+        if (e instanceof BasePresenter.MvpHttpException) {//Null is not a valid element
             showError("自定义Http请求异常: " + e.getMessage());
         } else if (e instanceof NullPointerException) {//Null is not a valid element
             showError("空指针 NullPointerException");

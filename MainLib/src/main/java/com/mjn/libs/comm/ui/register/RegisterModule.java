@@ -21,7 +21,6 @@ public class RegisterModule extends GetVcodeModule
 
     @Override
     public void loadData(int action, OnDataChangerListener listener, Object... parameter) {
-        super.loadData(action, listener, parameter);
 
         //处理验证码接口
         handleVcode(action, listener, parameter);

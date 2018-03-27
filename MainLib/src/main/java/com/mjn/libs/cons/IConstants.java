@@ -12,4 +12,5 @@ public interface IConstants {
     public static final int TOTAL_WAITING_VERIFICATION_CODE_TIME_60S = 60;
 
     public static final int TOTAL_WAITING_VERIFICATION_CODE_TIME_120S = 120;
+
 }

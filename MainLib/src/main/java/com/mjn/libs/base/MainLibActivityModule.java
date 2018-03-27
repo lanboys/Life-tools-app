@@ -3,14 +3,17 @@ package com.mjn.libs.base;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.bing.lan.comm.mvp.BasePresenter;
 import com.bing.lan.comm.mvp.activity.BaseActivityModule;
-import com.bing.lan.comm.rx.OnDataChangerListener;
 import com.bing.lan.comm.utils.LogUtil;
+import com.mjn.libs.api.ResponseListDataResult;
+import com.mjn.libs.api.ResponseResult;
 import com.mjn.libs.db.DataSaveManager;
 import com.mjn.libs.utils.AppConfig;
 import com.mjn.libs.utils.Tools;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,7 +24,61 @@ public abstract class MainLibActivityModule extends BaseActivityModule
         implements IMainLibActivityContract.IMainLibActivityModule {
 
     @Override
-    public void loadData(int action, OnDataChangerListener listener, Object... parameter) {
+    public void onSuccess(int action, Object data) {
+        if (presenter != null) {
+            ResponseResult<Object> result = (ResponseResult<Object>) data;
+            if (result == null) {
+                onError(action, new BasePresenter.MvpHttpException("ResponseResult 为空"));
+                return;
+            }
+
+            String code = result.getCode();
+            String message = result.getMessage();
+            String debugmessage = result.getDebugmessage();
+            Long servicetime = result.getServicetime();
+
+            // 响应码不正确
+            if (!ResponseResult.REQUEST_CODE_SUCCESS.equals(code)) {
+                if (com.bing.lan.comm.app.AppConfig.LOG_DEBUG) {// 测试环境显示
+                    if (debugmessage != null && debugmessage.length() > 50) {
+                        debugmessage = debugmessage.substring(0, 50);
+                    }
+                    onError(action, new BasePresenter.MvpHttpException("\nhttp响应code不匹配, \ncode: "
+                            + code + ", \nmessage: " + message + ", \ndebugMessage: " + debugmessage));
+                } else {
+                    onError(action, new BasePresenter.MvpHttpException(message));
+                }
+                return;
+            }
+
+            ResponseListDataResult<Object> resultData = result.getData();
+            //响应码正确, 数据为空
+            if (resultData == null) {
+                if (com.bing.lan.comm.app.AppConfig.LOG_DEBUG) {// 测试环境显示
+                    onError(action, new BasePresenter.MvpHttpException("ResponseListDataResult 为空"));
+                } else {
+                    onError(action, new BasePresenter.MvpHttpException("数据异常,请稍后再试.."));
+                }
+                return;
+            }
+
+            List<Object> list = resultData.getList();
+            //响应码正确, 数据列表为空
+            if (list == null || list.isEmpty()) {
+                if (com.bing.lan.comm.app.AppConfig.LOG_DEBUG) {// 测试环境显示
+                    onError(action, new BasePresenter.MvpHttpException("ResponseListDataResult 数据列表为空"));
+                } else {
+                    onError(action, new BasePresenter.MvpHttpException("数据异常,请稍后再试.."));
+                }
+                return;
+            }
+
+            resultData.setCode(code);
+            resultData.setMessage(message);
+            resultData.setDebugmessage(debugmessage);
+            resultData.setServicetime(servicetime);
+            presenter.onSuccess(action, resultData);
+        }
     }
 
     protected static final LogUtil log1 = LogUtil.getLogUtil(MainLibActivityModule.class, LogUtil.LOG_VERBOSE);
@@ -81,7 +138,7 @@ public abstract class MainLibActivityModule extends BaseActivityModule
      * @param signParams 签名后参数
      * @return
      */
-    protected String getPostUrl(String url, Map<String, String> signParams) {
+    protected static String getPostUrl(String url, Map<String, String> signParams) {
         StringBuffer strbuf = new StringBuffer();
         strbuf.append(url);
         Tools.Log("网络请求url:" + strbuf.toString());
@@ -95,7 +152,7 @@ public abstract class MainLibActivityModule extends BaseActivityModule
      * @param signParams
      * @return
      */
-    protected String getGetUrl(String url, Map<String, String> signParams) {
+    protected static String getGetUrl(String url, Map<String, String> signParams) {
         StringBuilder strbuf = new StringBuilder();
         for (Map.Entry<String, String> paramEntry : signParams.entrySet()) {
             if (strbuf.length() > 0) {

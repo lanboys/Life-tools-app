@@ -1,8 +1,13 @@
 package com.mjn.libs.base;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import com.bing.lan.comm.mvp.activity.BaseActivity;
 import com.ganxin.library.LoadDataLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.mjn.libs.comm.ui.h5.activity.WebViewActivity;
+import com.mjn.libs.cons.WebViewCons;
 
 import java.util.ArrayList;
 
@@ -39,5 +44,11 @@ public abstract class MainLibActivity
                 mLoadDataLayout.setStatus(state);
             }
         }
+    }
+
+    public void toHtml5Pager(Bundle bundle) {
+        Intent intent = new Intent(this, WebViewActivity.class);
+        intent.putExtra(WebViewCons.WEBVIEW_PARAMS_NAME, bundle);
+        startActivity(intent, false, true);
     }
 }

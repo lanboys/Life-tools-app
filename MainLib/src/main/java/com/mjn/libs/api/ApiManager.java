@@ -33,8 +33,8 @@ public class ApiManager extends BaseApiManager {
     private void initJzkApiService() {
         if (mApiRetrofit == null) {
             //mApiRetrofit = getRetrofit(BuildConfig.JZK_BASE_URL);
-            mApiRetrofit = getRetrofit("https://api.51qinglicai.com/api/");
-            //mApiRetrofit = getRetrofit("http://192.168.30.35:8081/api/");
+            //mApiRetrofit = getRetrofit("https://api.51qinglicai.com/api/");
+            mApiRetrofit = getRetrofit("http://192.168.30.35:8081/api/");
         }
         mApiService = mApiRetrofit.create(ApiService.class);
     }

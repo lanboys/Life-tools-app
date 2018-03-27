@@ -22,7 +22,6 @@ public class LoginModule extends GetVcodeModule
     @Override
     public void loadData(int action, OnDataChangerListener listener, Object... parameter) {
         super.loadData(action, listener, parameter);
-
         switch (action) {
             case ACTION_LOGIN:
                 login(action, listener, parameter);

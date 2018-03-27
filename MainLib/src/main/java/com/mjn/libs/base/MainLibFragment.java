@@ -1,5 +1,7 @@
 package com.mjn.libs.base;
 
+import android.os.Bundle;
+
 import com.bing.lan.comm.mvp.fragment.BaseFragment;
 import com.ganxin.library.LoadDataLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -38,6 +40,13 @@ public abstract class MainLibFragment
             if (mLoadDataLayout != null) {
                 mLoadDataLayout.setStatus(state);
             }
+        }
+    }
+
+    public void toHtml5Pager(Bundle bundle) {
+        MainLibActivity mainLibActivity = (MainLibActivity) getActivity();
+        if (mainLibActivity != null) {
+            mainLibActivity.toHtml5Pager(bundle);
         }
     }
 }
