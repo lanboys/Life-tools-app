@@ -69,4 +69,11 @@ public interface ApiService {
      */
     @GET("product/iproduct/search/findProListByCategoryIdAndFinancialPeriod")
     Observable<ResponseResult<IProduct>> investList(@QueryMap Map<String, String> map);
+
+    /**
+     * 投资详情
+     */
+    @FormUrlEncoded
+    @POST("product/iproduct/proDetailInfo")
+    Observable<ResponseResult<IProduct>> proDetailInfo(@FieldMap Map<String, String> map);
 }
