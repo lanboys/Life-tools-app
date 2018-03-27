@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/BG_GRAY"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_home_item_product"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/invest_list_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/CHAR_BLACK_COLOR"
+                android:textSize="15dp"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/LINE_GRAY_COLOR"
+            android:orientation="horizontal"/>
+
+        <LinearLayout
+            android:id="@+id/invest_item_layout"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/invest_item_precent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/ORANG_COLOR"
+                        android:textSize="20sp"/>
+
+                    <!--<TextView-->
+                    <!--android:id="@+id/textView16"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="%+11.%a"-->
+                    <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+                    <!--android:textColor="@color/ORANG_COLOR"-->
+                    <!--android:textSize="18sp" />-->
+
+                    <TextView
+                        android:id="@+id/invest_list_item_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/jiaxidaiziimg"
+                        android:textColor="@color/ORANG_COLOR"
+                        android:textSize="15sp"
+                        android:visibility="invisible"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="预期年化利率"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/CHAR_GRAY_LESS_COLOR"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="投资期限"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/CHAR_BLACK_COLOR"
+                        android:textSize="14sp"
+                        android:visibility="gone"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/invest_item_month"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/CHAR_BLACK_COLOR"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:id="@+id/invest_item_month_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@color/CHAR_BLACK_COLOR"
+                            android:textSize="14sp"
+                            android:visibility="visible"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="投资期限"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/CHAR_GRAY_LESS_COLOR"
+                        android:textSize="13sp"
+                        android:visibility="visible"/>
+
+                    <TextView
+                        android:id="@+id/invest_item_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/CHAR_GRAY_LESS_COLOR"
+                        android:textSize="12dp"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="元"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/CHAR_GRAY_LESS_COLOR"
+                        android:textSize="12sp"
+                        android:visibility="gone"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/invest_item_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/icon_invest_listbtn"
+                    android:gravity="center"
+                    android:text="抢购"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right"
+        android:layout_marginTop="10.5dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/invest_item_newer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="bottom"
+            android:src="@drawable/icon_invest_newer"
+            android:visibility="visible"/>
+
+        <ImageView
+            android:id="@+id/invest_item_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="top"
+            android:src="@drawable/icon_invest_end"
+            android:visibility="visible"/>
+    </RelativeLayout>
+</RelativeLayout>

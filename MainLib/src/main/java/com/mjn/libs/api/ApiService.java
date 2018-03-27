@@ -2,6 +2,7 @@ package com.mjn.libs.api;
 
 import com.bing.lan.comm.api.HttpResult;
 import com.mjn.libs.comm.bean.Home;
+import com.mjn.libs.comm.bean.IProduct;
 import com.mjn.libs.comm.bean.ISmsCode;
 import com.mjn.libs.comm.bean.IUser;
 import com.mjn.libs.comm.bean.UserBean;
@@ -62,4 +63,10 @@ public interface ApiService {
             @Field("newPwd") String newPwd,
             @Field("newPwd_ag") String newPwd_ag
     );
+
+    /**
+     * 投资列表
+     */
+    @GET("product/iproduct/search/findProListByCategoryIdAndFinancialPeriod")
+    Observable<ResponseResult<IProduct>> investList(@QueryMap Map<String, String> map);
 }

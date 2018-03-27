@@ -30,9 +30,8 @@ public class HomePresenter extends
         super.onSuccess(action, data);
         switch (action) {
             case ACTION_UPDATE_HOME:
-                ResponseListDataResult<Home> listDataResult = (ResponseListDataResult<Home>) data;
-                Home home = listDataResult.getList().get(0);
-                mView.onUpdateSuccess(home);
+
+                mView.onUpdateSuccess((ResponseListDataResult<Home>) data);
                 break;
         }
     }

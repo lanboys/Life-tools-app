@@ -21,6 +21,7 @@ import com.mjn.libs.base.MainLibActivity;
 import com.mjn.libs.base.MainLibFragment;
 import com.mjn.libs.comm.service.DiscoverService;
 import com.mjn.libs.comm.service.HomeService;
+import com.mjn.libs.comm.service.InvestService;
 import com.mjn.libs.comm.service.UserService;
 import com.mjn.libs.cons.UIRouterCons;
 import com.mjn.libs.view.NoScrollViewPager;
@@ -99,6 +100,14 @@ public class MainAppActivity extends MainLibActivity<IMainAppContract.IMainAppPr
                 titles.add(fragment.getTitle());
             }
         }
+        if (router.getService(InvestService.class.getSimpleName()) != null) {
+            InvestService service = (InvestService) router.getService(InvestService.class.getSimpleName());
+            MainLibFragment fragment = service.getInvestFragment();
+            if (fragment != null) {
+                fragments.add(fragment);
+                titles.add(fragment.getTitle());
+            }
+        }
 
         if (router.getService(DiscoverService.class.getSimpleName()) != null) {
             DiscoverService service = (DiscoverService) router.getService(DiscoverService.class.getSimpleName());
@@ -109,14 +118,12 @@ public class MainAppActivity extends MainLibActivity<IMainAppContract.IMainAppPr
             }
         }
 
-        for (int i = 0; i < 2; i++) {
-            if (router.getService(UserService.class.getSimpleName()) != null) {
-                UserService service = (UserService) router.getService(UserService.class.getSimpleName());
-                MainLibFragment fragment = service.getUserFragment();
-                if (fragment != null) {
-                    fragments.add(fragment);
-                    titles.add(fragment.getTitle());
-                }
+        if (router.getService(UserService.class.getSimpleName()) != null) {
+            UserService service = (UserService) router.getService(UserService.class.getSimpleName());
+            MainLibFragment fragment = service.getUserFragment();
+            if (fragment != null) {
+                fragments.add(fragment);
+                titles.add(fragment.getTitle());
             }
         }
 

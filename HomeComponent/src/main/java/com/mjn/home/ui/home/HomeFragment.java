@@ -11,6 +11,7 @@ import com.mjn.home.R;
 import com.mjn.home.ui.home.adapter.HomeRecyclerAdapter;
 import com.mjn.home.ui.home.bean.BannerBean;
 import com.mjn.home.ui.home.bean.HomeBtnBean;
+import com.mjn.libs.api.ResponseListDataResult;
 import com.mjn.libs.base.MainLibFragment;
 import com.mjn.libs.comm.bean.Adv;
 import com.mjn.libs.comm.bean.Home;
@@ -81,9 +82,11 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<LoadDataLayout> refreshView) {
-                mPresenter.updateHome("");
+
             }
         });
+
+        mPullRefreshRecycler.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
 
         mLoadDataLayout = mPullRefreshRecycler.getRefreshableView();
         mLoadDataLayout.setStatus(LoadDataLayout.SUCCESS);
@@ -111,7 +114,11 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
     }
 
     @Override
-    public void onUpdateSuccess(Home home) {
+    public void onUpdateSuccess(ResponseListDataResult<Home> listDataResult) {
+
+        Long servicetime = listDataResult.getServicetime();
+        Home home = listDataResult.getList().get(0);
+
         mHomeItemBeans.clear();
 
         if (home.getBannerList() != null && home.getBannerList().size() > 0) {
@@ -139,6 +146,7 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
         if (firstUserList != null && firstUserList.size() > 0) {
             for (IProduct iProduct : firstUserList) {
                 iProduct.setHomeBeanType(IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_PRODUCT);
+                iProduct.setServicetime(servicetime);
                 mHomeItemBeans.add(iProduct);
             }
         }
@@ -149,6 +157,7 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
         if (preferenceList != null && preferenceList.size() > 0) {
             for (IProduct iProduct : preferenceList) {
                 iProduct.setHomeBeanType(IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_PRE_PRODUCT);
+                iProduct.setServicetime(servicetime);
                 mHomeItemBeans.add(iProduct);
             }
         }
@@ -160,13 +169,13 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
         //    //有数据才清空
         //    mBottomList.clear();
         //    for (Adv adv : bottomList) {
-        //        adv.setHomeBeanType(IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BOTTOM_GUIDE);
+        //        adv.setInvestBeanType(IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BOTTOM_GUIDE);
         //        mBottomList.add(adv);
         //    }
         //}
         //if (mBottomList.size() == 0) {
         //    Adv adv = new Adv();
-        //    adv.setHomeBeanType(IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BOTTOM_GUIDE);
+        //    adv.setInvestBeanType(IHomeItemBean.HomeBeanType.HOME_ITEM_TYPE_BOTTOM_GUIDE);
         //    mBottomList.add(adv);
         //}
         //

@@ -156,13 +156,13 @@ public class AppConfig {
     /**
      * 首页布局类型
      */
-    public static final int HOME_ITEM_TYPE_BANNER = 0;//首页广告
-    public static final int HOME_ITEM_TYPE_BTN = 1;//按钮布局
-    public static final int HOME_ITEM_TYPE_PRODUCT = 2;//首页标的
-    public static final int HOME_ITEM_TYPE_BOTTOM = 3;//首页底部
-    public static final int HOME_ITEM_TYPE_PREPRODUCT = 4;//首页底部
-    public static final int HOME_ITEM_TYPE_BOTTOMGUIDE = 5;//首页底部
-    public static final int HOME_ITEM_TYPE_HONGBAOQIANDAO = 6;//红包签到布局
+    //public static final int HOME_ITEM_TYPE_BANNER = 0;//首页广告
+    //public static final int HOME_ITEM_TYPE_BTN = 1;//按钮布局
+    //public static final int HOME_ITEM_TYPE_PRODUCT = 2;//首页标的
+    //public static final int HOME_ITEM_TYPE_BOTTOM = 3;//首页底部
+    //public static final int HOME_ITEM_TYPE_PREPRODUCT = 4;//首页底部
+    //public static final int HOME_ITEM_TYPE_BOTTOMGUIDE = 5;//首页底部
+    //public static final int HOME_ITEM_TYPE_HONGBAOQIANDAO = 6;//红包签到布局
     /**
      * 银行限额布局类型
      */
@@ -170,10 +170,10 @@ public class AppConfig {
     public static final int BANK_LIMIT_TYPE_CONTEXT = 1;//内容布局
     /**
      * 投资页面布局类型
-     */
-    public static final int INVEST_TYPE_FAST = 0;//快速搜索栏
-    public static final int INVEST_TYPE_ITEM = 1;//列表内容
-    public static final int INVEST_TYPE_TOPITEM = 2;//顶部新手标布局
+    // */
+    //public static final int INVEST_TYPE_FAST = 0;//快速搜索栏
+    //public static final int INVEST_TYPE_ITEM = 1;//列表内容
+    //public static final int INVEST_TYPE_TOP_ITEM = 2;//顶部新手标布局
 
     /**
      * 红包选择布局类型

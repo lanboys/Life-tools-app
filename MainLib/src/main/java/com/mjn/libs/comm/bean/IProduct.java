@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Administrator on 2017/10/16.
  */
 
-public class IProduct implements Serializable, IHomeItemBean {
+public class IProduct implements Serializable, IHomeItemBean, IInvestItemBean {
 
     private Integer productId;
     private Integer categoryId;
@@ -285,7 +285,20 @@ public class IProduct implements Serializable, IHomeItemBean {
 
     @Override
     public int getHomeBeanType() {
+
         return homeBeanType;
+    }
+
+    private int investBeanType;
+
+    @Override
+    public int getInvestBeanType() {
+        return investBeanType;
+    }
+
+    @Override
+    public void setInvestBeanType(int investType) {
+        this.investBeanType = investType;
     }
 }
 

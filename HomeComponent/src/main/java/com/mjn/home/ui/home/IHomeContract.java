@@ -1,5 +1,6 @@
 package com.mjn.home.ui.home;
 
+import com.mjn.libs.api.ResponseListDataResult;
 import com.mjn.libs.base.IMainLibFragmentContract;
 import com.mjn.libs.comm.bean.Home;
 
@@ -10,7 +11,7 @@ public interface IHomeContract {
 
     interface IHomeView extends IMainLibFragmentContract.IMainLibFragmentView<IHomePresenter> {
 
-        void onUpdateSuccess(Home home);
+        void onUpdateSuccess( ResponseListDataResult<Home> home);
     }
 
     interface IHomePresenter extends

@@ -13,4 +13,7 @@ public interface IConstants {
 
     public static final int TOTAL_WAITING_VERIFICATION_CODE_TIME_120S = 120;
 
+    public static final String LIST_PAGE_SIZE = "20";
+
+
 }
