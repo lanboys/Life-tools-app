@@ -1,5 +1,6 @@
 package com.mjn.invest.ui.investUp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -57,11 +58,11 @@ public class InvestDetailUpFragment extends MainLibFragment<IInvestDetailUpContr
     private android.widget.TextView mInvestDetailXieyishu;
     private String mProjectId;
 
-    private IProduct mIProduct;
+    private IProduct mIProduct = new IProduct();
 
-    public void setProjectId(String projectId) {
+    @SuppressLint("ValidFragment")
+    public InvestDetailUpFragment(String projectId) {
         mProjectId = projectId;
-        mPresenter.updateInvestDetail(projectId);
     }
 
     public InvestDetailUpFragment() {
@@ -91,6 +92,8 @@ public class InvestDetailUpFragment extends MainLibFragment<IInvestDetailUpContr
 
     @Override
     protected void initViewAndData(Intent intent, Bundle arguments) {
+        investDetail = (InvestDetailActivity) getActivity();
+
         mPullRefreshScrollview = (MyPullToRefreshScrollView) mContentView.findViewById(R.id.pull_refresh_scrollview);
         mPullToRefreshBase = mPullRefreshScrollview;
         mInvestDetailTitle = (TextView) mContentView.findViewById(R.id.invest_detail_title);
@@ -117,11 +120,11 @@ public class InvestDetailUpFragment extends MainLibFragment<IInvestDetailUpContr
         mInvestDetailXieyishu = (TextView) mContentView.findViewById(R.id.invest_detail_xieyishu);
 
         mPullRefreshScrollview.setNeedConsumeTouch(true);
+        mPullRefreshScrollview.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
         mPullRefreshScrollview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
 
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-                mPullRefreshScrollview.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
                 if (mProjectId != null) {
                     mPresenter.updateInvestDetail(mProjectId);
                 }
@@ -131,10 +134,41 @@ public class InvestDetailUpFragment extends MainLibFragment<IInvestDetailUpContr
             public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
             }
         });
-        mPullRefreshScrollview.addOnLayoutChangeListener(listener);
+        mPullRefreshScrollview.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                if (oldBottom != 0 && bottom != 0 && (oldBottom - bottom > AppConfig.SCREEN_HEIGHT / 3)) {
+
+                } else if (oldBottom != 0 && bottom != 0 && (bottom - oldBottom > AppConfig.SCREEN_HEIGHT / 3)) {
+                    checkMoney();
+                }
+            }
+        });
 
         // 刻度滚动
-        loopScanleView.setSlideRulerDataInterface(slideRulerDataInterface);
+        loopScanleView.setSlideRulerDataInterface(new SlideRulerDataInterface() {
+            @Override
+            public void getText(String source) {
+                try {
+                    LogUtil.i("InvestDetailUp   slideRulerDataInterface=========" + source);
+                    int data = 0;
+                    if (!TextUtils.isEmpty(source)) {
+                        data = Integer.valueOf(source);
+                    }
+                    int step = (int) (mIProduct.getIncreaseInvestment() / 1000);
+                    data = (data / step) * step;
+                    if (currMoney != data) {
+                        currMoney = data;
+                        input.setText(source);
+                        // 滚动标尺底部显示的投标的钱
+                        investDetail.setBottomInvesetMoney(currMoney + "元");
+                        checkMoney();
+                    }
+                } catch (Exception e) {
+                    log.e("getText():  " + e.getLocalizedMessage());
+                }
+            }
+        });
 
         InputFilter[] inputFilters = new InputFilter[1];
         inputFilters[0] = inputFilter;
@@ -145,38 +179,7 @@ public class InvestDetailUpFragment extends MainLibFragment<IInvestDetailUpContr
         endMoney.setText("一 一");
     }
 
-    private View.OnLayoutChangeListener listener = new View.OnLayoutChangeListener() {
-        @Override
-        public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-            if (oldBottom != 0 && bottom != 0 && (oldBottom - bottom > AppConfig.SCREEN_HEIGHT / 3)) {
-
-            } else if (oldBottom != 0 && bottom != 0 && (bottom - oldBottom > AppConfig.SCREEN_HEIGHT / 3)) {
-                checkMoney();
-            }
-        }
-    };
-
     int currMoney = 0;
-
-    SlideRulerDataInterface slideRulerDataInterface = new SlideRulerDataInterface() {
-        @Override
-        public void getText(String source) {
-            LogUtil.i("InvestDetailUp   slideRulerDataInterface=========" + source);
-            int data = 0;
-            if (!TextUtils.isEmpty(source)) {
-                data = Integer.valueOf(source);
-            }
-            int step = (int) (mIProduct.getIncreaseInvestment() / 1000);
-            data = (data / step) * step;
-            if (currMoney != data) {
-                currMoney = data;
-                input.setText(source);
-                // 滚动标尺底部显示的投标的钱
-                investDetail.setBottomInvesetMoney(currMoney + "元");
-                checkMoney();
-            }
-        }
-    };
 
     InputFilter inputFilter = new InputFilter() {
         @Override
@@ -206,7 +209,7 @@ public class InvestDetailUpFragment extends MainLibFragment<IInvestDetailUpContr
 
     @Override
     protected void readyStartPresenter() {
-
+        mPresenter.updateInvestDetail(mProjectId);
     }
 
     public boolean checkMoney() {
@@ -234,11 +237,11 @@ public class InvestDetailUpFragment extends MainLibFragment<IInvestDetailUpContr
             } else {
                 mValue = (mValue / step) * step;
             }
-            investDetailUpModel.setMoney(mValue);
+            setMoney(mValue);
             if (!TextUtils.isEmpty(input.getText().toString())) {
                 input.setText(String.valueOf(mValue));
                 input.setSelection(input.getText().length());
-                endMoney.setText(investDetailUpModel.getEarming());
+                endMoney.setText(getEarming());
             } else {
                 loopScanleView.setCurrentValue(0);
                 endMoney.setText("一 一");
@@ -269,12 +272,45 @@ public class InvestDetailUpFragment extends MainLibFragment<IInvestDetailUpContr
         return check;
     }
 
+    /**
+     * 投资金额
+     */
+    private long money;
+
+    public void setMoney(long money) {
+        money *= 1000;
+        if (money < mIProduct.getMinInvestment()) {
+            money = mIProduct.getMinInvestment();
+            showError("最少可投" + mIProduct.getMinInvestment() / 1000 + "元");
+        } else if (money > mIProduct.getMaxInvestment()) {
+            money = mIProduct.getMaxInvestment();
+            showError("最多可投" + mIProduct.getMaxInvestment() / 1000 + "元");
+        }
+        this.money = money;
+        countEarming();
+    }
+
+    /**
+     * 预期收益
+     */
+    private String earming;
+
+    public void countEarming() {
+        earming = Tools.getDecimal(((double) this.money / (double) 1000) * (double)
+                (mIProduct.getAnnualYield() / (float) 100) / (double) 365 * (double) mIProduct.getFinancialPeriodDay());
+    }
+
+    public String getEarming() {
+        return earming;
+    }
+
     @Override
     public void updateSuccess(ResponseListDataResult<IProduct> listDataResult) {
 
         List<IProduct> list = listDataResult.getList();
         IProduct iProduct = list.get(0);
         mIProduct = iProduct;
+        investDetail.setIProduct(iProduct);
 
         if (iProduct == null) {
             return;

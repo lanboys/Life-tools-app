@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.ganxin.library.LoadDataLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.luojilab.component.componentlib.router.ui.UIRouter;
 import com.mjn.invest.R;
 import com.mjn.invest.ui.invest.adapter.InvestRecyclerAdapter;
 import com.mjn.libs.api.ResponseListDataResult;
@@ -113,7 +114,8 @@ public class InvestFragment extends MainLibFragment<IInvestContract.IInvestPrese
 
     @Override
     public void onClickToInvestPager(Bundle bundle) {
-        showError("去投资页面");
+        UIRouter.getInstance().openUri(getActivity(), "DDComp://invest/detail", bundle);
+
     }
 
     @Override

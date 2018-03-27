@@ -1,0 +1,9 @@
+auto generated, do not change !!!! 
+
+HOST : invest
+
+Í¶×ÊÏêÇéÒ³
+/detail
+productId:String
+title:String
+

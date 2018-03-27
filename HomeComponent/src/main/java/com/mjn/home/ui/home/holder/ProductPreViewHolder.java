@@ -11,6 +11,9 @@ import com.mjn.home.ui.home.adapter.HomeRecyclerAdapter;
 import com.mjn.libs.comm.bean.IHomeItemBean;
 import com.mjn.libs.comm.bean.IProduct;
 
+import static com.mjn.libs.cons.UIRouterCons.INVEST_DETAIL_AUTOWIRED_PRODUCT_ID;
+import static com.mjn.libs.cons.UIRouterCons.INVEST_DETAIL_AUTOWIRED_PRODUCT_TITLE;
+
 /**
  * Created by 蓝兵 on 2018/3/26.
  */
@@ -69,8 +72,8 @@ public class ProductPreViewHolder extends BaseViewHolder<IHomeItemBean> {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putInt("productId", product.getProductId());
-                bundle.putString("title", product.getTitle());
+                bundle.putString(INVEST_DETAIL_AUTOWIRED_PRODUCT_ID, product.getProductId()+"");
+                bundle.putString(INVEST_DETAIL_AUTOWIRED_PRODUCT_TITLE, product.getTitle());
                 if (mOnHomeClickCallBack != null) {
                     mOnHomeClickCallBack.onClickToInvestDetailPager(bundle);
                 }

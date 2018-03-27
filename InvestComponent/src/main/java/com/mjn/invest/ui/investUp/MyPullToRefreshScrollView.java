@@ -1,11 +1,15 @@
 package com.mjn.invest.ui.investUp;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ScrollView;
 
+import com.handmark.pulltorefresh.library.LoadingLayoutBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.mjn.libs.view.pullRefresh.BaoGaoLoadingLayout;
 
 /**
  * Created by 蓝兵 on 2018/3/27.
@@ -27,6 +31,14 @@ public class MyPullToRefreshScrollView extends PullToRefreshScrollView {
 
     public MyPullToRefreshScrollView(Context context, Mode mode, AnimationStyle style) {
         super(context, mode, style);
+    }
+
+    @Override
+    protected LoadingLayoutBase createLoadingLayout(Context context, Mode mode, TypedArray attrs) {
+        // 为了得到 TypedArray
+        LoadingLayoutBase layout = new BaoGaoLoadingLayout(context, mode, getPullToRefreshScrollDirection(), attrs);
+        layout.setVisibility(View.INVISIBLE);
+        return layout;
     }
 
     /*********************************************************************

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.ganxin.library.LoadDataLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.luojilab.component.componentlib.router.ui.UIRouter;
 import com.mjn.home.R;
 import com.mjn.home.ui.home.adapter.HomeRecyclerAdapter;
 import com.mjn.home.ui.home.bean.BannerBean;
@@ -228,6 +229,7 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
 
     @Override
     public void onClickToInvestDetailPager(Bundle bundle) {
-        showError("去投资详情页面");
+
+        UIRouter.getInstance().openUri(getActivity(), "DDComp://invest/detail", bundle);
     }
 }

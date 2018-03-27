@@ -10,7 +10,8 @@ import static com.mjn.libs.cons.RequestActionCons.ACTION_UPDATE_INVEST_DETAIL;
  * @author 蓝兵
  */
 public class InvestDetailUpPresenter extends
-        MainLibFragmentPresenter<IInvestDetailUpContract.IInvestDetailUpView, IInvestDetailUpContract.IInvestDetailUpModule>
+        MainLibFragmentPresenter<IInvestDetailUpContract.IInvestDetailUpView,
+                IInvestDetailUpContract.IInvestDetailUpModule>
         implements IInvestDetailUpContract.IInvestDetailUpPresenter {
 
     @Override
@@ -31,7 +32,7 @@ public class InvestDetailUpPresenter extends
         switch (action) {
             case ACTION_UPDATE_INVEST_DETAIL:
                 ResponseListDataResult<IProduct> listDataResult = (ResponseListDataResult<IProduct>) data;
-                //mView.updateSuccess();
+                mView.updateSuccess(listDataResult);
                 break;
         }
     }

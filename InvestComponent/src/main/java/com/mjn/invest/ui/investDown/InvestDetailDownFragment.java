@@ -3,6 +3,7 @@ package com.mjn.invest.ui.investDown;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.mjn.invest.R;
 import com.mjn.libs.base.MainLibFragment;
 
 /**
@@ -27,8 +28,9 @@ public class InvestDetailDownFragment extends MainLibFragment<IInvestDetailDownC
 
     @Override
     protected int getLayoutResId() {
-        return 0;
+        return R.layout.fragment_invest_detail_up;
     }
+
 
     @Override
     protected IInvestDetailDownContract.IInvestDetailDownPresenter initPresenter() {
@@ -41,7 +43,7 @@ public class InvestDetailDownFragment extends MainLibFragment<IInvestDetailDownC
     // @Override
     // protected void startInject(FragmentComponent fragmentComponent) {
     //     //        fragmentComponent.inject(this);
-    // }
+    // }\
 
     @Override
     protected void initViewAndData(Intent intent, Bundle arguments) {

@@ -11,7 +11,7 @@ public interface IInvestDetailUpContract {
 
     interface IInvestDetailUpView extends IMainLibFragmentContract.IMainLibFragmentView<IInvestDetailUpPresenter> {
 
-        void updateSuccess(   ResponseListDataResult<IProduct> listDataResult);
+        void updateSuccess(ResponseListDataResult<IProduct> listDataResult);
     }
 
     interface IInvestDetailUpPresenter extends

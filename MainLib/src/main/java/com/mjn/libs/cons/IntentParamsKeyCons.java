@@ -7,4 +7,6 @@ package com.mjn.libs.cons;
 public class IntentParamsKeyCons implements IConstants {
 
     public static final String INTENT_TO_LOGIN_ENTER_TYPE = "intent_to_login_enter_type";
+
+
 }
