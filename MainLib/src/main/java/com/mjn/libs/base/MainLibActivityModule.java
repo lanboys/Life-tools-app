@@ -66,9 +66,9 @@ public abstract class MainLibActivityModule extends BaseActivityModule
             //响应码正确, 数据列表为空
             if (list == null || list.isEmpty()) {
                 if (com.bing.lan.comm.app.AppConfig.LOG_DEBUG) {// 测试环境显示
-                    onError(action, new BasePresenter.MvpHttpException("ResponseListDataResult 数据列表为空"));
+                    onNoData(action, "没有更多的数据了哦..ResponseListDataResult 数据列表为空");
                 } else {
-                    onError(action, new BasePresenter.MvpHttpException("数据异常,请稍后再试.."));
+                    onNoData(action, "没有更多的数据了哦..");
                 }
                 return;
             }

@@ -168,6 +168,13 @@ public abstract class BaseModule implements IBaseContract.IBaseModule, OnDataCha
     }
 
     @Override
+    public void onNoData(int action, String tip) {
+        if (presenter != null) {
+            presenter.onNoData(action, tip);
+        }
+    }
+
+    @Override
     public boolean isDetachView() {
         return presenter != null && presenter.isDetachView();
     }

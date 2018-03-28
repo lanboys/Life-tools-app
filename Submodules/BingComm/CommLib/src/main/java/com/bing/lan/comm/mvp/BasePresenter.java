@@ -137,6 +137,13 @@ public abstract class BasePresenter<
     }
 
     @Override
+    public void onSuccess(int action, Object data) {
+        if (mView != null) {
+            mView.setLoadDataLayoutStatus(LoadDataLayout.SUCCESS);
+        }
+    }
+
+    @Override
     public void onError(int action, Throwable e) {
         if (AppConfig.LOG_DEBUG) {// 测试环境显示
             onDebugException(action, e);
@@ -206,6 +213,17 @@ public abstract class BasePresenter<
     public void onNetError(int action, String tip) {
         if (mView != null) {
             mView.setLoadDataLayoutStatus(LoadDataLayout.NO_NETWORK);
+            showInfo(tip);
+        }
+        finishAction(action);
+
+        onCompleted(action);
+    }
+
+    @Override
+    public void onNoData(int action, String tip) {
+        if (mView != null) {
+            mView.setLoadDataLayoutStatus(LoadDataLayout.EMPTY);
             showInfo(tip);
         }
         finishAction(action);

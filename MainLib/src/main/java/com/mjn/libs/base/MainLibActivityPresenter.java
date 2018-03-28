@@ -11,8 +11,5 @@ public abstract class MainLibActivityPresenter<
         extends BaseActivityPresenter<T, V>
         implements IMainLibActivityContract.IMainLibActivityPresenter<T, V> {
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public void onSuccess(int action, Object data) {
-    }
+
 }

@@ -15,12 +15,13 @@ public class HomePresenter extends
 
     @Override
     public void onStart(Object... params) {
+        showProgressDialog("正在加载..");
+        updateHome((String) params[0]);
 
     }
 
     @Override
     public void updateHome(String userId) {
-        //showProgressDialog("");
         requestData(ACTION_UPDATE_HOME, userId);
     }
 

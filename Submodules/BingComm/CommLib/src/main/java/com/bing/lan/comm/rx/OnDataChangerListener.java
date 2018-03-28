@@ -17,5 +17,7 @@ public interface OnDataChangerListener {
 
     void onNetError(int action, String tip);
 
+    void onNoData(int action, String tip);
+
     boolean isDetachView();
 }

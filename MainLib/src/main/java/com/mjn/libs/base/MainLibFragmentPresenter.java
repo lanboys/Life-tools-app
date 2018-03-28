@@ -11,10 +11,5 @@ public abstract class MainLibFragmentPresenter<
         extends BaseFragmentPresenter<T, V>
         implements IMainLibFragmentContract.IMainLibFragmentPresenter<T, V> {
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public void onSuccess(int action, Object data) {
-        switch (action) {
-        }
-    }
+
 }

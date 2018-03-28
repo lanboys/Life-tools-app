@@ -111,7 +111,7 @@ public class HomeFragment extends MainLibFragment<IHomeContract.IHomePresenter>
 
     @Override
     protected void readyStartPresenter() {
-        mPresenter.updateHome("");
+        mPresenter.onStart("");
     }
 
     @Override
