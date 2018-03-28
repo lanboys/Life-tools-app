@@ -12,4 +12,8 @@ public class IntentParamsKeyCons implements IConstants {
     //支付订单页面
     public static final String INTENT_TO_PAY_ORDER_PROJECT_ID = "intent_to_pay_order_project_id";
     public static final String INTENT_TO_PAY_ORDER_PROJECT_MONEY = "intent_to_pay_order_project_money";
+
+    //选择优惠页面
+    public static final String INTENT_TO_SELECT_DISCOUNT_PAY_INFO = "intent_to_select_discount_pay_info";
+    public static final String INTENT_TO_SELECT_DISCOUNT_MONEY = "intent_to_select_discount_money";
 }

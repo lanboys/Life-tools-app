@@ -17,6 +17,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.luojilab.component.componentlib.router.ui.UIRouter;
 import com.mjn.invest.R;
 import com.mjn.invest.ui.investUp.MyPullToRefreshScrollView;
+import com.mjn.invest.ui.selectDiscount.SelectDiscountActivity;
 import com.mjn.libs.api.ResponseListDataResult;
 import com.mjn.libs.base.MainLibActivity;
 import com.mjn.libs.comm.bean.IBankCard;
@@ -24,6 +25,7 @@ import com.mjn.libs.comm.bean.Order;
 import com.mjn.libs.comm.bean.OrderBean;
 import com.mjn.libs.comm.bean.PayInfo;
 import com.mjn.libs.comm.bean.UserCoupon;
+import com.mjn.libs.cons.IntentRequestCode;
 import com.mjn.libs.utils.AppConfig;
 import com.mjn.libs.utils.AppSpDataUtil;
 import com.mjn.libs.utils.SPUtil;
@@ -63,6 +65,8 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
     private TextView mPayOrderSmsBtnOk;
     private String mProjectId;
     private Long mMoney;
+    private OrderBean mOrderBean;
+    private PayInfo mPayInfo;
 
     @Override
     protected int getLayoutResId() {
@@ -169,16 +173,46 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
      * 优惠券点击
      */
     public void discountClick(View view) {
-        if (payOrderModel.getLuckeyMoneyList() == null && payOrderModel.getCouponList() == null || payOrderModel.getCouponList().isEmpty() &&
-                payOrderModel.getLuckeyMoneyList().isEmpty()) {
+        if (mPayInfo.getLuckeyMoneys() == null && mPayInfo.getCoupons() == null || mPayInfo.getCoupons().isEmpty() &&
+                mPayInfo.getLuckeyMoneys().isEmpty()) {
             Tools.toastShow("您没有优惠券");
             return;
         }
-        Bundle bundle = new Bundle();
-        bundle.putLong("money", payOrderModel.getMoney());
-        bundle.putSerializable("payInfo", payOrderModel.getPayInfo());
+        //Bundle bundle = new Bundle();
+        //bundle.putLong("money", mMoney);
+        //bundle.putSerializable("payInfo", mPayInfo);
+        //showError("去选择优惠券");
 
-        //Tools.pushScreen(SelectDiscount.class, bundle);
+        Intent intent = new Intent(PayOrderActivity.this, SelectDiscountActivity.class);
+        intent.putExtra(INTENT_TO_PAY_ORDER_PROJECT_MONEY, mMoney + "");
+        intent.putExtra(INTENT_TO_PAY_ORDER_PROJECT_ID, mPayInfo);
+        startActivityForResult(intent, IntentRequestCode.REQUEST_CODE_TO_GET_DISCOUNT);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == IntentRequestCode.REQUEST_CODE_TO_GET_DISCOUNT && RESULT_OK == resultCode) {
+
+            Bundle bundle = null;
+            if (bundle != null) {//优惠卷选择
+                UserCoupon userCoupon = (UserCoupon) bundle.getSerializable("coupon");
+                isUseCoupon = bundle.getBoolean("isUse", true);
+                mUserCoupon = userCoupon;
+                if (userCoupon != null) {
+                    if (userCoupon.getCouponValue() > 0) {//红包
+                        mPayOrderCoupon.setText(Tools.getDecimal((double) userCoupon.getCouponValue() / (double) 1000));
+                        mPayOrderCoupon.append("元");
+                    } else {
+                        mPayOrderCoupon.setText("加息" + userCoupon.getAddtionAmount() + "%");
+                    }
+                } else {
+                    mPayOrderCoupon.setText("0元");
+                }
+            }
+            mPresenter.getOrderInfo(mProjectId, mMoney + "");
+        }
     }
 
     /**
@@ -186,9 +220,10 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
      */
     public void bankClick(View view) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable("payInfo", payOrderModel.getPayInfo());
+        bundle.putSerializable("payInfo", mPayInfo);
         bundle.putBoolean("isBack", true);
         //Tools.pushScreen(MyBank.class, bundle);
+        showError("去选择银行");
     }
 
     /**
@@ -196,17 +231,17 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
      */
     public void limitClick(View view) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable("payInfo", payOrderModel.getPayInfo());
+        bundle.putSerializable("payInfo", mPayInfo);
         //Tools.pushScreen(BankLimit.class, bundle);
+        showError("去看限额");
     }
 
     /**
      * 立即支付
      */
     public void buyClick(View view) {
-        if (payOrderModel.getBankList() != null && !payOrderModel.getBankList().isEmpty()) {
-            LoadingDialog.showLoading(getActivity());
-            payOrderModel.paySms();
+        if (mPayInfo.getBankCards() != null && !mPayInfo.getBankCards().isEmpty()) {
+            mPresenter.sendPayVcode(mProjectId, "", "", mMoney + "");
         } else {
             Tools.toastShow("请先绑定银行卡");
         }
@@ -222,7 +257,7 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
         String token = SPUtil.getInstance().getString("token");
         bundle.putString("url", AppConfig.HTTP_HOST + AppConfig.INSTALLMENT_URL + "?token=" + token);
         bundle.putString("title", "出借咨询服务协议");
-        Tools.pushScreen(HybridOfWebview.class, bundle);
+        toHtml5Pager(bundle);
     }
 
     private TimeCount tc;
@@ -234,7 +269,7 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
 
         SoftInputUtil.closeSoftInput(this);
 
-        payOrderModel.repaySms();
+        mPresenter.reSendPayVcode(mOrderBean.getOrderId() + "");
         if (tc != null) {
             tc.cancel();
             tc = null;
@@ -314,7 +349,7 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
     /**
      * 选择的优惠信息
      */
-    private UserCoupon userCoupon;
+    private UserCoupon mUserCoupon;
     /**
      * 是否使用优惠
      */
@@ -327,51 +362,51 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
 
     @Override
     public void updateSuccess(ResponseListDataResult<PayInfo> data) {
-        PayInfo payInfo = data.getList().get(0);
+        mPayInfo = data.getList().get(0);
 
         mPayOrderMoney.setText(String.valueOf(mMoney / 1000));
         mPayOrderMoney.append("元");
 
         boolean isLuckey = false;
-        if (userCoupon != null) {
-            if (userCoupon.getCouponValue() > 0) {//红包
+        if (mUserCoupon != null) {
+            if (mUserCoupon.getCouponValue() > 0) {//红包
                 isLuckey = true;
-                mPayOrderCoupon.setText(Tools.getDecimal((double) userCoupon.getCouponValue() / (double) 1000));
+                mPayOrderCoupon.setText(Tools.getDecimal((double) mUserCoupon.getCouponValue() / (double) 1000));
                 mPayOrderCoupon.append("元");
             } else {
                 isLuckey = false;
-                mPayOrderCoupon.setText("加息" + userCoupon.getAddtionAmount() + "%");
+                mPayOrderCoupon.setText("加息" + mUserCoupon.getAddtionAmount() + "%");
             }
         } else if (isUseCoupon) {
-            if (payInfo.getLuckeyMoneys() != null && !payInfo.getLuckeyMoneys().isEmpty()) {
+            if (mPayInfo.getLuckeyMoneys() != null && !mPayInfo.getLuckeyMoneys().isEmpty()) {
                 isLuckey = true;
-                userCoupon = payInfo.getLuckeyMoneys().get(0);
-                mPayOrderCoupon.setText(String.valueOf(payInfo.getLuckeyMoneys().get(0).getCouponValue() / 1000));
+                mUserCoupon = mPayInfo.getLuckeyMoneys().get(0);
+                mPayOrderCoupon.setText(String.valueOf(mPayInfo.getLuckeyMoneys().get(0).getCouponValue() / 1000));
                 mPayOrderCoupon.append("元");
-            } else if (payInfo.getCoupons() != null && !payInfo.getCoupons().isEmpty()) {
-                userCoupon = payInfo.getCoupons().get(0);
+            } else if (mPayInfo.getCoupons() != null && !mPayInfo.getCoupons().isEmpty()) {
+                mUserCoupon = mPayInfo.getCoupons().get(0);
                 isLuckey = false;
-                mPayOrderCoupon.setText("加息" + payInfo.getCoupons().get(0).getAddtionAmount() + "%");
+                mPayOrderCoupon.setText("加息" + mPayInfo.getCoupons().get(0).getAddtionAmount() + "%");
             }
         }
         if (AppSpDataUtil.getInstance().getUserBean().getAvailableAmount() != null) {
             mPayOrderBalance.setText(Tools.getDecimal((double) AppSpDataUtil.getInstance().getUserBean().getAvailableAmount() / (double) 1000));
             mPayOrderBalance.append("元");
         }
-        if (payInfo.getBankCards() != null) {
-            for (IBankCard iBankCard : payInfo.getBankCards()) {
+        if (mPayInfo.getBankCards() != null) {
+            for (IBankCard iBankCard : mPayInfo.getBankCards()) {
                 if (iBankCard.getIsDefault().equals("Y")) {
                     mPayOrderBankIcon.setImageResource(AppConfig.iconMap.get(iBankCard.getBankCode()));
                     mPayOrderBankName.setText(iBankCard.getBankName());
                     mPayOrderBankNumber.setText("尾号" + iBankCard.getCardNo());
                     double money = 0;
                     long amoney = (AppSpDataUtil.getInstance().getUserBean().getAvailableAmount() / 10) * 10;
-                    if (userCoupon != null) {
+                    if (mUserCoupon != null) {
                         money = (double) (mMoney) - (double) (isLuckey ?
-                                (userCoupon.getCouponValue()) : 0) - (double) amoney;
+                                (mUserCoupon.getCouponValue()) : 0) - (double) amoney;
                     } else {
                         money = (double) (mMoney) - (double) (isLuckey ?
-                                (payInfo.getLuckeyMoneys().get(0).getCouponValue()) : 0) - (double) amoney;
+                                (mPayInfo.getLuckeyMoneys().get(0).getCouponValue()) : 0) - (double) amoney;
                     }
                     if (money > 0) {
                         mPayOrderBankMoney.setText(Tools.getDecimal(money / (double) 1000));
@@ -394,14 +429,14 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
 
     @Override
     public void sendVcodeSuccess(ResponseListDataResult<OrderBean> data) {
-        OrderBean orderBean = data.getList().get(0);
-        if (orderBean.isSuccess()) {
+        mOrderBean = data.getList().get(0);
+        if (mOrderBean.isSuccess()) {
             showToast("余额支付成功");
             UIRouter.getInstance().openUri(this, "DDComp://app/mainApp", null);
         } else {
             // 弹框
-            if (!TextUtils.isEmpty(orderBean.getPhone())) {
-                showSmsLayout(orderBean.getPhone());
+            if (!TextUtils.isEmpty(mOrderBean.getPhone())) {
+                showSmsLayout(mOrderBean.getPhone());
             }
         }
     }
@@ -415,11 +450,6 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
     public void payOrderSuccess(ResponseListDataResult<OrderBean> data) {
         OrderBean orderBean = data.getList().get(0);
 
-
-
         showError("去主页");
-
-
-
     }
 }

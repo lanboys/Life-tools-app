@@ -1,7 +1,6 @@
 package com.mjn.invest.ui.investDetail;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -15,6 +14,7 @@ import com.luojilab.router.facade.annotation.RouteNode;
 import com.mjn.invest.R;
 import com.mjn.invest.ui.investDown.InvestDetailDownFragment;
 import com.mjn.invest.ui.investUp.InvestDetailUpFragment;
+import com.mjn.invest.ui.payOrder.PayOrderActivity;
 import com.mjn.libs.base.MainLibActivity;
 import com.mjn.libs.comm.bean.IProduct;
 import com.mjn.libs.comm.ui.login.LoginActivity;
@@ -26,6 +26,9 @@ import com.mjn.libs.utils.DragLayout;
 import com.mjn.libs.utils.SPUtil;
 import com.mjn.libs.utils.ToastAlone;
 import com.mjn.libs.utils.Tools;
+
+import static com.mjn.libs.cons.IntentParamsKeyCons.INTENT_TO_PAY_ORDER_PROJECT_ID;
+import static com.mjn.libs.cons.IntentParamsKeyCons.INTENT_TO_PAY_ORDER_PROJECT_MONEY;
 
 /**
  * @author 蓝兵
@@ -134,12 +137,11 @@ public class InvestDetailActivity extends MainLibActivity<IInvestDetailContract.
                             Tools.toastShow("不能重复购买新手标");
                         } else {
                             up.removeLayoutChange();
-                            Bundle bundle = new Bundle();
-                            bundle.putString("money", money + "");
-                            bundle.putString("id", mProjectId);
-                            //Tools.pushScreen(PayOrder.class,bundle);
 
-                            showError("去支付页面");
+                            Intent intent = new Intent(InvestDetailActivity.this, PayOrderActivity.class);
+                            intent.putExtra(INTENT_TO_PAY_ORDER_PROJECT_MONEY, money + "");
+                            intent.putExtra(INTENT_TO_PAY_ORDER_PROJECT_ID, mProjectId);
+                            startActivity(intent, false, true);
 
                             long amount = up.getMoney() / 1000;
                             //                    double incomeOfInvestment = Double.valueOf(up.getShouyiMoney());
