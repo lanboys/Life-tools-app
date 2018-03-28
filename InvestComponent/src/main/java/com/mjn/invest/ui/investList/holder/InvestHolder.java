@@ -1,4 +1,4 @@
-package com.mjn.invest.ui.invest.holder;
+package com.mjn.invest.ui.investList.holder;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.bing.lan.comm.adapter.BaseViewHolder;
 import com.mjn.invest.R;
-import com.mjn.invest.ui.invest.adapter.InvestRecyclerAdapter;
+import com.mjn.invest.ui.investList.adapter.InvestRecyclerAdapter;
 import com.mjn.libs.comm.bean.IProduct;
 
 import static com.mjn.libs.cons.UIRouterCons.INVEST_DETAIL_AUTOWIRED_PRODUCT_ID;

@@ -134,16 +134,7 @@ public class InvestDetailUpFragment extends MainLibFragment<IInvestDetailUpContr
             public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
             }
         });
-        mPullRefreshScrollview.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                if (oldBottom != 0 && bottom != 0 && (oldBottom - bottom > AppConfig.SCREEN_HEIGHT / 3)) {
-
-                } else if (oldBottom != 0 && bottom != 0 && (bottom - oldBottom > AppConfig.SCREEN_HEIGHT / 3)) {
-                    checkMoney();
-                }
-            }
-        });
+        mPullRefreshScrollview.addOnLayoutChangeListener(listener);
 
         //全额购买
         mTvQuanegoumai.setOnClickListener(new View.OnClickListener() {
@@ -284,10 +275,34 @@ public class InvestDetailUpFragment extends MainLibFragment<IInvestDetailUpContr
         return check;
     }
 
+    public void addLayoutChange() {
+        if (mPullRefreshScrollview != null && listener != null) {
+            mPullRefreshScrollview.addOnLayoutChangeListener(listener);
+        }
+    }
+
+    public void removeLayoutChange() {
+        mPullRefreshScrollview.removeOnLayoutChangeListener(listener);
+    }
+
+    private View.OnLayoutChangeListener listener = new View.OnLayoutChangeListener() {
+        @Override
+        public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+            if (oldBottom != 0 && bottom != 0 && (oldBottom - bottom > AppConfig.SCREEN_HEIGHT / 3)) {
+
+            } else if (oldBottom != 0 && bottom != 0 && (bottom - oldBottom > AppConfig.SCREEN_HEIGHT / 3)) {
+                checkMoney();
+            }
+        }
+    };
     /**
      * 投资金额
      */
     private long money;
+
+    public long getMoney() {
+        return money;
+    }
 
     public void setMoney(long money) {
         money *= 1000;
@@ -314,6 +329,29 @@ public class InvestDetailUpFragment extends MainLibFragment<IInvestDetailUpContr
 
     public String getEarming() {
         return earming;
+    }
+
+    /**
+     * 是否进度已满
+     *
+     * @return
+     */
+    public boolean isComplete() {
+        try {
+            return mIProduct.getInvestmentRatio().intValue() >= 100;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * 设置最小金额
+     */
+    public void setInputMoney() {
+        input.setText(String.valueOf(mIProduct.getMinInvestment() / 1000));
+        input.setSelection(input.getText().length());
+        setMoney(Long.parseLong(input.getText().toString()));
     }
 
     @Override

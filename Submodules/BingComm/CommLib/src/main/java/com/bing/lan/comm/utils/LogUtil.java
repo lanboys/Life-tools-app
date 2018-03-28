@@ -1,5 +1,6 @@
 package com.bing.lan.comm.utils;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.bing.lan.comm.app.AppConfig;
@@ -9,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class LogUtil  implements Serializable {
+public class LogUtil implements Serializable {
 
     public static final int LOG_VERBOSE = 1;
     public static final int LOG_INFO = 2;
@@ -141,6 +142,9 @@ public class LogUtil  implements Serializable {
     }
 
     private void print(int level, String tag, String msg, Throwable throwable) {
+        if (TextUtils.isEmpty(tag) || TextUtils.isEmpty(msg)) {
+            return;
+        }
         switch (level) {
             case LOG_VERBOSE:
                 //Log.v(tag, msg);

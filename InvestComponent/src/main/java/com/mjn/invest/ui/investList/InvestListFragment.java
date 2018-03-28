@@ -1,4 +1,4 @@
-package com.mjn.invest.ui.invest;
+package com.mjn.invest.ui.investList;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,7 +10,7 @@ import com.ganxin.library.LoadDataLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.luojilab.component.componentlib.router.ui.UIRouter;
 import com.mjn.invest.R;
-import com.mjn.invest.ui.invest.adapter.InvestRecyclerAdapter;
+import com.mjn.invest.ui.investList.adapter.InvestRecyclerAdapter;
 import com.mjn.libs.api.ResponseListDataResult;
 import com.mjn.libs.base.MainLibFragment;
 import com.mjn.libs.comm.bean.IInvestItemBean;
@@ -23,8 +23,8 @@ import java.util.List;
 /**
  * @author 蓝兵
  */
-public class InvestFragment extends MainLibFragment<IInvestContract.IInvestPresenter>
-        implements IInvestContract.IInvestView, InvestRecyclerAdapter.OnInvestClickCallBack {
+public class InvestListFragment extends MainLibFragment<IInvestListContract.IInvestListPresenter>
+        implements IInvestListContract.IInvestListView, InvestRecyclerAdapter.OnInvestClickCallBack {
 
     private com.bing.lan.comm.view.MyToolbar mToolbar;
     private com.mjn.libs.view.pullRefresh.PullToRefreshLoadDataLayoutRecyclerView mPullRefreshRecycler;
@@ -35,12 +35,12 @@ public class InvestFragment extends MainLibFragment<IInvestContract.IInvestPrese
     private long mSize;
     private long mNumber;
 
-    public InvestFragment() {
+    public InvestListFragment() {
 
     }
 
-    public static InvestFragment newInstance(String title) {
-        InvestFragment fragment = new InvestFragment();
+    public static InvestListFragment newInstance(String title) {
+        InvestListFragment fragment = new InvestListFragment();
         fragment.setTitle(title);
         return fragment;
     }
@@ -51,9 +51,9 @@ public class InvestFragment extends MainLibFragment<IInvestContract.IInvestPrese
     }
 
     @Override
-    protected IInvestContract.IInvestPresenter initPresenter() {
-        InvestPresenter presenter = new InvestPresenter();
-        presenter.setModule(new InvestModule());
+    protected IInvestListContract.IInvestListPresenter initPresenter() {
+        InvestListPresenter presenter = new InvestListPresenter();
+        presenter.setModule(new InvestListModule());
         presenter.onAttachView(this);
         return presenter;
     }

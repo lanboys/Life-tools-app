@@ -1,4 +1,4 @@
-package com.mjn.invest.ui.invest.adapter;
+package com.mjn.invest.ui.investList.adapter;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -7,8 +7,8 @@ import android.view.View;
 import com.bing.lan.comm.adapter.BaseRecyclerAdapter;
 import com.bing.lan.comm.adapter.BaseViewHolder;
 import com.mjn.invest.R;
-import com.mjn.invest.ui.invest.holder.InvestHolder;
-import com.mjn.invest.ui.invest.holder.InvestTopHolder;
+import com.mjn.invest.ui.investList.holder.InvestHolder;
+import com.mjn.invest.ui.investList.holder.InvestTopHolder;
 import com.mjn.libs.comm.bean.IProduct;
 
 import static com.mjn.libs.comm.bean.IInvestItemBean.InvestType.INVEST_TYPE_ITEM;

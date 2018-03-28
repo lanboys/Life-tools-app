@@ -2,6 +2,7 @@ package com.mjn.libs.api;
 
 import com.bing.lan.comm.api.BaseApiManager;
 import com.mjn.libs.api.interceptor.AddProgressInterceptor;
+import com.mjn.libs.api.interceptor.BaoSaveCookiesInterceptor;
 import com.mjn.libs.api.interceptor.CommParaInterceptor;
 
 import java.io.InputStream;
@@ -47,6 +48,9 @@ public class ApiManager extends BaseApiManager {
 
         // 添加进度显示
         builder.addInterceptor(new AddProgressInterceptor());
+
+        //适配包公有财
+        builder.addInterceptor(new BaoSaveCookiesInterceptor(com.bing.lan.comm.app.AppUtil.getAppContext()));
     }
 
     @Override

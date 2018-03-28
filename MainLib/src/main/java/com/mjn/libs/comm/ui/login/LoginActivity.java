@@ -32,17 +32,17 @@ public class LoginActivity extends GetVcodeActivity<ILoginContract.ILoginPresent
     ////@BindView(R.id.toolbar)
     ////@BindView(R2.id.toolbar)
     //MyToolbar mToolbar;
-    private android.widget.LinearLayout mLoginContainer;
-    private android.widget.ImageView mImageView3;
-    private android.widget.EditText mLoginAccountEt;
-    private android.widget.ImageView mIvDeletephone;
-    private android.widget.LinearLayout mLinearLayout;
-    private android.widget.ImageView mImageView4;
-    private android.widget.EditText mLoginPasswordEt;
-    private android.widget.ImageView mIvDeletepwd;
-    private android.widget.TextView mLoginLoginBtn;
-    private android.widget.TextView mLoginRegistBtn;
-    private android.widget.TextView mLoginFindPwdBtn;
+    private LinearLayout mLoginContainer;
+    private ImageView mImageView3;
+    private EditText mLoginAccountEt;
+    private ImageView mIvDeletephone;
+    private LinearLayout mLinearLayout;
+    private ImageView mImageView4;
+    private EditText mLoginPasswordEt;
+    private ImageView mIvDeletepwd;
+    private TextView mLoginLoginBtn;
+    private TextView mLoginRegistBtn;
+    private TextView mLoginFindPwdBtn;
     private MyToolbar mToolbar;
 
     /**

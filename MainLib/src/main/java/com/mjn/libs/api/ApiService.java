@@ -5,6 +5,9 @@ import com.mjn.libs.comm.bean.Home;
 import com.mjn.libs.comm.bean.IProduct;
 import com.mjn.libs.comm.bean.ISmsCode;
 import com.mjn.libs.comm.bean.IUser;
+import com.mjn.libs.comm.bean.Order;
+import com.mjn.libs.comm.bean.OrderBean;
+import com.mjn.libs.comm.bean.PayInfo;
 import com.mjn.libs.comm.bean.UserBean;
 
 import java.util.Map;
@@ -39,6 +42,20 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("user/ismscode/sendSms")
     Observable<ResponseResult<ISmsCode>> getIDCardVcode(@FieldMap Map<String, String> map);
+
+    /**
+     * 重复获取支付验证码
+     */
+    @FormUrlEncoded
+    @POST("trade/order/repaysms")
+    Observable<ResponseResult<Order>> getRePayOrderVcode(@FieldMap Map<String, String> map);
+
+    /**
+     * 获取支付验证码
+     */
+    @FormUrlEncoded
+    @POST("trade/order/paysms")
+    Observable<ResponseResult<OrderBean>> getPayOrderVcode(@FieldMap Map<String, String> map);
 
     /**
      * 注册
@@ -76,4 +93,17 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("product/iproduct/proDetailInfo")
     Observable<ResponseResult<IProduct>> proDetailInfo(@FieldMap Map<String, String> map);
+
+    /**
+     * 优惠券、红包查询接口（用于购买理财）
+     */
+    @GET("trade/payinfo/search/findByProductIdAndAmount")
+    Observable<ResponseResult<PayInfo>> payOrderInfo(@QueryMap Map<String, String> map);
+
+    /**
+     * 支付订单
+     */
+    @FormUrlEncoded
+    @POST("trade/order/pay")
+    Observable<ResponseResult<OrderBean>> payOrder(@FieldMap Map<String, String> map);
 }

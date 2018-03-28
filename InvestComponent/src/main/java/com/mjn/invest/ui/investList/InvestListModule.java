@@ -1,4 +1,4 @@
-package com.mjn.invest.ui.invest;
+package com.mjn.invest.ui.investList;
 
 import com.bing.lan.comm.rx.OnDataChangerListener;
 import com.mjn.libs.api.ApiManager;
@@ -18,11 +18,12 @@ import static com.mjn.libs.cons.RequestActionCons.ACTION_UPDATE_INVEST;
 /**
  * @author 蓝兵
  */
-public class InvestModule extends MainLibFragmentModule
-        implements IInvestContract.IInvestModule {
+public class InvestListModule extends MainLibFragmentModule
+        implements IInvestListContract.IInvestListModule {
 
     @Override
     public void loadData(int action, OnDataChangerListener listener, Object... parameter) {
+        super.loadData(action, listener, parameter);
 
         switch (action) {
             case ACTION_UPDATE_INVEST:

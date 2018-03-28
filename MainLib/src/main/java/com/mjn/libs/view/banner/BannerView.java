@@ -12,7 +12,6 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,6 +22,7 @@ import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 import android.widget.Scroller;
 
+import com.bing.lan.comm.utils.LogUtil;
 import com.mjn.libs.R;
 
 import java.lang.reflect.Field;
@@ -36,10 +36,8 @@ import java.lang.reflect.Field;
  */
 public class BannerView extends FrameLayout {
 
-    private static final String TAG = BannerView.class.getSimpleName();
-
+    protected final LogUtil log = LogUtil.getLogUtil(getClass(), LogUtil.LOG_WARN);
     private ViewPager mViewPager;
-
     // 页面边距
     private int pageMargin = 10;
     // 页面显示屏幕占比
@@ -166,7 +164,8 @@ public class BannerView extends FrameLayout {
                     mViewPager.setCurrentItem(currentPosition + 1);
                 }
             }
-            Log.d(TAG, "run: currentPosition = " + mViewPager.getCurrentItem());
+            log.i("run(): currentPosition = " + mViewPager.getCurrentItem());
+
             // 一直给自己发消息
             mHandler.postDelayed(this, mScrollDuration);
         }
@@ -240,7 +239,7 @@ public class BannerView extends FrameLayout {
 
         @Override
         public void transformPage(View page, float position) {
-            Log.d(TAG, "transformPage: position=" + position);
+            log.i("transformPage():  position=" + position);
             // 不同位置的缩放和透明度
             float scale = (position < 0)
                     ? ((1 - scaleMin) * position + 1)
@@ -256,7 +255,7 @@ public class BannerView extends FrameLayout {
                 ViewCompat.setPivotX(page, 0);
                 ViewCompat.setPivotY(page, page.getHeight() / 2);
             }
-            //Log.d(TAG, "transformPage: scale=" + scale);
+            log.i("transformPage():  scale=" + scale);
             ViewCompat.setScaleX(page, scale);
             ViewCompat.setScaleY(page, scale);
             ViewCompat.setAlpha(page, Math.abs(alpha));
@@ -285,7 +284,7 @@ public class BannerView extends FrameLayout {
             return;
         mScrollTask.start();
         setAnimationScroll((int) mAnimDuration);
-        Log.d(TAG, "startAutoScroll");
+        log.w("startAutoScroll(): ");
     }
 
     /**
@@ -295,7 +294,7 @@ public class BannerView extends FrameLayout {
         if (mScrollTask == null)
             return;
         mScrollTask.stop();
-        Log.d(TAG, "stopAutoScroll");
+        log.w("stopAutoScroll(): ");
     }
 
     /**

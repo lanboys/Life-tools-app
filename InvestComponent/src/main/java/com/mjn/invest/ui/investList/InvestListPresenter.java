@@ -1,4 +1,4 @@
-package com.mjn.invest.ui.invest;
+package com.mjn.invest.ui.investList;
 
 import com.mjn.libs.api.ResponseListDataResult;
 import com.mjn.libs.base.MainLibFragmentPresenter;
@@ -11,9 +11,9 @@ import static com.mjn.libs.cons.RequestActionCons.ACTION_UPDATE_INVEST;
 /**
  * @author 蓝兵
  */
-public class InvestPresenter extends
-        MainLibFragmentPresenter<IInvestContract.IInvestView, IInvestContract.IInvestModule>
-        implements IInvestContract.IInvestPresenter {
+public class InvestListPresenter extends
+        MainLibFragmentPresenter<IInvestListContract.IInvestListView, IInvestListContract.IInvestListModule>
+        implements IInvestListContract.IInvestListPresenter {
 
     @Override
     public void onStart(Object... params) {

@@ -6,19 +6,22 @@ package com.mjn.libs.cons;
 
 public class RequestActionCons implements IConstants {
 
-    public static final int ACTION_GET_VCODE = 1111;
-    public static final int ACTION_GET_VCODE_FORGET = 1112;
-    public static final int ACTION_CHECK_VCODE = 2222;
+    public static final int ACTION_GET_VCODE = 4444;
+    public static final int ACTION_GET_VCODE_FORGET = 4442;
+    public static final int ACTION_CHECK_VCODE = 4443;
 
     public static final int ACTION_LOGIN = 1000;
     public static final int ACTION_REGISTER = 1001;
 
-    public static final int ACTION_UPDATE_HOME = 1002;
+    public static final int ACTION_UPDATE_HOME = 1010;
 
-    public static final int ACTION_UPDATE_INVEST = 1003;
-    public static final int ACTION_LOAD_MORE_INVEST = 1004;
+    public static final int ACTION_UPDATE_INVEST = 1020;
+    public static final int ACTION_LOAD_MORE_INVEST = 1021;
 
+    public static final int ACTION_UPDATE_INVEST_DETAIL = 1031;
 
-
-    public static final int ACTION_UPDATE_INVEST_DETAIL = 1005;
+    public static final int ACTION_UPDATE_ORDER_INFO = 1041;
+    public static final int ACTION_GET_PAY_ORDER_VCODE = 1042;
+    public static final int ACTION_GET_RE_PAY_ORDER_VCODE = 1043;
+    public static final int ACTION_PAY_ORDER = 1044;
 }

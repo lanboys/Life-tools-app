@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/BG_GRAY"
-    android:clickable="true"
-    android:orientation="vertical">
+<!--<LinearLayout-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="@color/BG_GRAY"-->
+    <!--android:clickable="true"-->
+    <!--android:orientation="vertical">-->
 
-    <com.mjn.invest.ui.investUp.MyPullToRefreshScrollView
-        xmlns:app="http://schemas.android.com/tools"
-        xmlns:ptr="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/pull_refresh_scrollview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fastScrollEnabled="false"
-        android:overScrollMode="never"
-        android:scrollbars="none"
-        app:ptrShowIndicator="false"
-        ptr:ptrAnimationStyle="rotate"
-        ptr:ptrMode="pullFromStart">
+<com.mjn.invest.ui.investUp.MyPullToRefreshScrollView
+    xmlns:app="http://schemas.android.com/tools"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pull_refresh_scrollview"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fastScrollEnabled="false"
+    android:overScrollMode="never"
+    android:scrollbars="none"
+    app:ptrShowIndicator="false"
+    ptr:ptrAnimationStyle="rotate"
+    ptr:ptrMode="pullFromStart">
 
         <include layout="@layout/invest_detail_up_view"/>
 
     </com.mjn.invest.ui.investUp.MyPullToRefreshScrollView>
-</LinearLayout>
+<!--</LinearLayout>-->

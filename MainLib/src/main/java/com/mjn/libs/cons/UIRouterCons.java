@@ -16,8 +16,10 @@ public class UIRouterCons implements IConstants {
     //    投资详情页面 ui 路由信息
     public static final String INVEST_DETAIL_ROUTE_NODE_PATH = "/detail";
     public static final String INVEST_DETAIL_ROUTE_NODE_DESC = "投资详情页";
+
     public static final String INVEST_DETAIL_AUTOWIRED_PRODUCT_ID = "productId";
     public static final String INVEST_DETAIL_AUTOWIRED_PRODUCT_ID_DESC = "标的Id";
+
     public static final String INVEST_DETAIL_AUTOWIRED_PRODUCT_TITLE = "title";
     public static final String INVEST_DETAIL_AUTOWIRED_PRODUCT_TITLE_DESC = "标的标题";
 }

@@ -1,6 +1,6 @@
 package com.mjn.invest;
 
-import com.mjn.invest.ui.invest.InvestFragment;
+import com.mjn.invest.ui.investList.InvestListFragment;
 import com.mjn.libs.base.MainLibFragment;
 import com.mjn.libs.comm.service.InvestService;
 import com.mjn.libs.cons.FragmentTitleCons;
@@ -13,6 +13,6 @@ public class InvestServiceImpl implements InvestService {
 
     @Override
     public MainLibFragment getInvestFragment() {
-        return InvestFragment.newInstance(FragmentTitleCons.FRAGMENT_INVEST_TITLE);
+        return InvestListFragment.newInstance(FragmentTitleCons.FRAGMENT_INVEST_TITLE);
     }
 }

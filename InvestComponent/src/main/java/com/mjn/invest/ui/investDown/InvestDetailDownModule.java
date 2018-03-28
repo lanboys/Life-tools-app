@@ -11,6 +11,7 @@ public class InvestDetailDownModule extends MainLibFragmentModule
 
     @Override
     public void loadData(int action, OnDataChangerListener listener, Object... parameter) {
+        super.loadData(action, listener, parameter);
 
     }
 }
