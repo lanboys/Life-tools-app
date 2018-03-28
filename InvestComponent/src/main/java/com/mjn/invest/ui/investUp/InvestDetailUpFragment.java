@@ -34,28 +34,28 @@ public class InvestDetailUpFragment extends MainLibFragment<IInvestDetailUpContr
         implements IInvestDetailUpContract.IInvestDetailUpView {
 
     private MyPullToRefreshScrollView mPullRefreshScrollview;
-    private android.widget.TextView mInvestDetailTitle;
-    private android.widget.TextView mInvestDetailEarnings;
-    private android.widget.TextView mInvestDetailEarningsAdd1;
-    private android.widget.TextView mInvestDetailEarningsAdd;
-    private android.widget.TextView mInvestDetailEarningsAdd2;
-    private android.widget.TextView mInvestDetailType;
-    private android.widget.TextView mInvestDetailStartMoney;
-    private android.widget.TextView mStartTime;
-    private android.widget.EditText input;
-    private android.widget.TextView mTvQuanegoumai;
-    private android.widget.ImageView mInvestDetailSub;
-    private android.widget.ImageView mInvestDetailAdd;
+    private TextView mInvestDetailTitle;
+    private TextView mInvestDetailEarnings;
+    private TextView mInvestDetailEarningsAdd1;
+    private TextView mInvestDetailEarningsAdd;
+    private TextView mInvestDetailEarningsAdd2;
+    private TextView mInvestDetailType;
+    private TextView mInvestDetailStartMoney;
+    private TextView mStartTime;
+    private EditText input;
+    private TextView mTvQuanegoumai;
+    private ImageView mInvestDetailSub;
+    private ImageView mInvestDetailAdd;
     private com.mjn.libs.view.ruler.SlideRuler loopScanleView;
-    private android.widget.TextView endMoney;
-    private android.widget.TextView mTvTipTime;
-    private android.widget.TextView mInvestDetailLeftMoney;
-    private android.widget.TextView mTvMaxmoney;
-    private android.widget.LinearLayout mInvestDetailKeyongll;
-    private android.widget.TextView mInvestDetailUserMoney;
-    private android.widget.TextView mInvestDetailHuankuan;
-    private android.widget.TextView mInvestDetailBaozhang;
-    private android.widget.TextView mInvestDetailXieyishu;
+    private TextView endMoney;
+    private TextView mTvTipTime;
+    private TextView mInvestDetailLeftMoney;
+    private TextView mTvMaxmoney;
+    private LinearLayout mInvestDetailKeyongll;
+    private TextView mInvestDetailUserMoney;
+    private TextView mInvestDetailHuankuan;
+    private TextView mInvestDetailBaozhang;
+    private TextView mInvestDetailXieyishu;
     private String mProjectId;
 
     private IProduct mIProduct = new IProduct();
@@ -142,6 +142,18 @@ public class InvestDetailUpFragment extends MainLibFragment<IInvestDetailUpContr
                 } else if (oldBottom != 0 && bottom != 0 && (bottom - oldBottom > AppConfig.SCREEN_HEIGHT / 3)) {
                     checkMoney();
                 }
+            }
+        });
+
+        //全额购买
+        mTvQuanegoumai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                input.setText(String.valueOf(mIProduct.getMaxInvestment() / 1000));
+                loopScanleView.setCurrentValue(Integer.valueOf(input.getText().toString()));
+                // 刷新
+                loopScanleView.updateView(0, 0);
+                checkMoney();
             }
         });
 
@@ -309,12 +321,13 @@ public class InvestDetailUpFragment extends MainLibFragment<IInvestDetailUpContr
 
         List<IProduct> list = listDataResult.getList();
         IProduct iProduct = list.get(0);
-        mIProduct = iProduct;
-        investDetail.setIProduct(iProduct);
 
         if (iProduct == null) {
             return;
         }
+        mIProduct = iProduct;
+        investDetail.setIProduct(iProduct);
+        investDetail.addSecondFragment(mIProduct.getIntroduceUrl());
 
         mInvestDetailEarnings.setText(String.valueOf(mIProduct.getAnnualYield() - mIProduct.getAddYield()));
         if (mIProduct.getAddYield() > 0) {

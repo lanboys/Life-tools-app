@@ -35,7 +35,6 @@ public class InvestDetailActivity extends MainLibActivity<IInvestDetailContract.
     private android.widget.FrameLayout mSecond;
     private android.widget.TextView mTvInvsetmoney;
     private android.widget.TextView buyButton;
-    FragmentTransaction fragmentTransaction;
 
     @Autowired(name = UIRouterCons.INVEST_DETAIL_AUTOWIRED_PRODUCT_ID,
             desc = UIRouterCons.INVEST_DETAIL_AUTOWIRED_PRODUCT_ID_DESC)
@@ -78,10 +77,9 @@ public class InvestDetailActivity extends MainLibActivity<IInvestDetailContract.
         //}
 
         up = new InvestDetailUpFragment(mProjectId);
-        down = new InvestDetailDownFragment();
 
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.first, up).add(R.id.second, down).commit();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.first, up).commit();
 
         mToolbar = (MyToolbar) findViewById(R.id.toolbar);
         mDraglayout = (DragLayout) findViewById(R.id.draglayout);
@@ -91,18 +89,27 @@ public class InvestDetailActivity extends MainLibActivity<IInvestDetailContract.
         buyButton = (TextView) findViewById(R.id.invest_detail_buy);
 
         setToolBar(mToolbar, mProjectTitle, true, 0);
-    }
-
-    @Override
-    protected void readyStartPresenter() {
 
         mDraglayout.setNextPageListener(new DragLayout.ShowNextPageNotifier() {
             @Override
             public void onDragNext() {
 
-                showError("显示下一页");
             }
         });
+    }
+
+    @Override
+    protected void readyStartPresenter() {
+
+    }
+
+    public void addSecondFragment(String url) {
+
+        if (down == null) {
+            down = new InvestDetailDownFragment(url);
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.add(R.id.second, down).commit();
+        }
     }
 
     private boolean isChaoxian;
