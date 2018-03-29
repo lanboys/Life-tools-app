@@ -20,6 +20,10 @@ import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mjn.libs.cons.UIRouterCons.INVEST_DETAIL_ROUTE_NODE_PATH;
+import static com.mjn.libs.cons.UIRouterCons.INVEST_HOST;
+import static com.mjn.libs.cons.UIRouterCons.UI_ROUTER_SCHEME;
+
 /**
  * @author 蓝兵
  */
@@ -114,8 +118,10 @@ public class InvestListFragment extends MainLibFragment<IInvestListContract.IInv
 
     @Override
     public void onClickToInvestPager(Bundle bundle) {
-        UIRouter.getInstance().openUri(getActivity(), "DDComp://invest/detail", bundle);
-
+        UIRouter.getInstance().openUri(
+                getActivity(),
+                UI_ROUTER_SCHEME + INVEST_HOST + INVEST_DETAIL_ROUTE_NODE_PATH,
+                bundle);
     }
 
     @Override

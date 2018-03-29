@@ -1,4 +1,4 @@
-package com.mjn.invest;
+package com.mjn.invest.service;
 
 import com.mjn.invest.ui.investList.InvestListFragment;
 import com.mjn.libs.base.MainLibFragment;

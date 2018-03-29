@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.mjn.invest.ui.investUp.MyPullToRefreshScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pull_refresh_scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    ptr:layout_behavior="@string/appbar_scrolling_view_behavior"
+    ptr:ptrAnimationStyle="rotate"
+    ptr:ptrMode="pullFromStart"
+    tools:context="com.mjn.invest.com.mjn.user.ui.bankList.BankListActivity"
+    tools:showIn="@layout/activity_bank_list">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/mybank_btn_add_card"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="+添加银行卡"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/BLUE_THEME"
+                android:textSize="16sp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/mybank_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="12dp"
+                    android:src="@drawable/icon_bank_support"/>
+
+                <TextView
+                    android:id="@+id/mybank_btn_type"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="平台支持银行"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#808080"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/mybank_limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:text="支持银行及限额说明"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/BLUE_THEME"
+                android:textSize="13dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</com.mjn.invest.ui.investUp.MyPullToRefreshScrollView>

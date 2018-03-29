@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mjn.invest.ui.payOrder.PayOrderActivity">
+    tools:context="com.mjn.invest.com.mjn.user.ui.selectDiscount.SelectDiscountActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -22,10 +22,9 @@
             app:toolbar_title_centerInParent="true"
             app:toolbar_title_color="@color/main_color_text_black"/>
 
-
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_pay_order"/>
+    <include layout="@layout/content_select_discount"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

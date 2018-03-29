@@ -6,6 +6,8 @@ import com.luojilab.component.componentlib.router.ui.UIRouter;
 import com.mjn.libs.comm.service.UserService;
 import com.mjn.user.UserServiceImpl;
 
+import static com.mjn.libs.cons.UIRouterCons.USER_HOST;
+
 public class UserAppLike implements IApplicationLike {
 
     Router router = Router.getInstance();
@@ -13,13 +15,13 @@ public class UserAppLike implements IApplicationLike {
 
     @Override
     public void onCreate() {
-        uiRouter.registerUI("user");
+        uiRouter.registerUI(USER_HOST);
         router.addService(UserService.class.getSimpleName(), new UserServiceImpl());
     }
 
     @Override
     public void onStop() {
-        uiRouter.unregisterUI("user");
+        uiRouter.unregisterUI(USER_HOST);
         router.removeService(UserService.class.getSimpleName());
     }
 }

@@ -9,14 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.luojilab.router.facade.annotation.RouteNode;
-import com.mjn.libs.cons.UIRouterCons;
-
 /**
  * @author Zhuwg
  */
-@RouteNode(path = UIRouterCons.USER_ACCOUNT_INFORMATION,
-        desc = UIRouterCons.USER_ACCOUNT_INFORMATION_DESC)
 public class UserComponentActivity extends AppCompatActivity {
 
     @Override

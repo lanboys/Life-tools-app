@@ -19,7 +19,6 @@ import com.luojilab.router.facade.annotation.RouteNode;
 import com.mjn.investment.R;
 import com.mjn.libs.base.MainLibActivity;
 import com.mjn.libs.base.MainLibFragment;
-import com.mjn.libs.comm.service.DiscoverService;
 import com.mjn.libs.comm.service.HomeService;
 import com.mjn.libs.comm.service.InvestService;
 import com.mjn.libs.comm.service.UserService;
@@ -109,14 +108,14 @@ public class MainAppActivity extends MainLibActivity<IMainAppContract.IMainAppPr
             }
         }
 
-        if (router.getService(DiscoverService.class.getSimpleName()) != null) {
-            DiscoverService service = (DiscoverService) router.getService(DiscoverService.class.getSimpleName());
-            MainLibFragment fragment = service.getDiscoverFragment();
-            if (fragment != null) {
-                fragments.add(fragment);
-                titles.add(fragment.getTitle());
-            }
-        }
+        //if (router.getService(DiscoverService.class.getSimpleName()) != null) {
+        //    DiscoverService service = (DiscoverService) router.getService(DiscoverService.class.getSimpleName());
+        //    MainLibFragment fragment = service.getDiscoverFragment();
+        //    if (fragment != null) {
+        //        fragments.add(fragment);
+        //        titles.add(fragment.getTitle());
+        //    }
+        //}
 
         if (router.getService(UserService.class.getSimpleName()) != null) {
             UserService service = (UserService) router.getService(UserService.class.getSimpleName());

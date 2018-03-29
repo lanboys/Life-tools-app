@@ -2,3 +2,13 @@ auto generated, do not change !!!!
 
 HOST : user
 
+银行卡列表
+/backList
+isPayOrder:String
+payInfo:com.mjn.libs.comm.bean.PayInfo
+
+选择优惠页面
+/discount
+money:String
+payInfo:com.mjn.libs.comm.bean.PayInfo
+

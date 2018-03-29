@@ -1,4 +1,4 @@
-package com.mjn.invest.ui.selectDiscount.adpter;
+package com.mjn.user.ui.selectDiscount.adapter;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -6,10 +6,10 @@ import android.view.View;
 
 import com.bing.lan.comm.adapter.BaseRecyclerAdapter;
 import com.bing.lan.comm.adapter.BaseViewHolder;
-import com.mjn.invest.R;
-import com.mjn.invest.ui.selectDiscount.holder.CouponHolder;
-import com.mjn.invest.ui.selectDiscount.holder.RedPackageHolder;
 import com.mjn.libs.comm.bean.UserCoupon;
+import com.mjn.user.R;
+import com.mjn.user.ui.selectDiscount.holder.CouponHolder;
+import com.mjn.user.ui.selectDiscount.holder.RedPackageHolder;
 
 import static com.mjn.libs.comm.bean.ISelectDiscountItemBean.SelectDiscountBeanType.DISCOUNT_ITEM_TYPE_COUPON;
 import static com.mjn.libs.comm.bean.ISelectDiscountItemBean.SelectDiscountBeanType.DISCOUNT_ITEM_TYPE_RED_PACKAGE;

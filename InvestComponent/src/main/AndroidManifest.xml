@@ -18,10 +18,5 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
-        <activity
-            android:name=".ui.selectDiscount.SelectDiscountActivity"
-            android:label="@string/title_activity_select_discount"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
     </application>
 </manifest>

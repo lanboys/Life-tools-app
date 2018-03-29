@@ -5,11 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mjn.invest.ui.selectDiscount.SelectDiscountActivity">
+    tools:context="com.mjn.user.ui.bankList.BankListActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:elevation="0dp"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <com.bing.lan.comm.view.MyToolbar
@@ -23,8 +24,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_select_discount"/>
-
+    <include layout="@layout/content_bank_list"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

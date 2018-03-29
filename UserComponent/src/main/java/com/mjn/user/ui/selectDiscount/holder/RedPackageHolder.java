@@ -1,4 +1,4 @@
-package com.mjn.invest.ui.selectDiscount.holder;
+package com.mjn.user.ui.selectDiscount.holder;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,11 +8,11 @@ import android.widget.TextView;
 
 import com.bing.lan.comm.adapter.BaseViewHolder;
 import com.bing.lan.comm.app.AppUtil;
-import com.mjn.invest.R;
-import com.mjn.invest.ui.selectDiscount.adpter.SelectDiscountAdapter;
 import com.mjn.libs.comm.bean.NewUserCouponBean;
 import com.mjn.libs.comm.bean.UserCoupon;
 import com.mjn.libs.utils.Tools;
+import com.mjn.user.R;
+import com.mjn.user.ui.selectDiscount.adapter.SelectDiscountAdapter;
 
 /**
  * Created by 蓝兵 on 2018/3/27.
@@ -29,7 +29,7 @@ public class RedPackageHolder extends BaseViewHolder<UserCoupon> {
     private TextView mQuanDesc;
     private TextView mQuanDate;
 
-    private boolean isCanPressed;
+    private boolean isCanPressed=true;
     SelectDiscountAdapter.OnDiscountClickCallBack onDiscountClickCallBack;
 
     public RedPackageHolder(View convertView,

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/bank_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp">
+
+        <ImageView
+            android:id="@+id/get_cash_bank_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/icon_bank_gs" />
+
+        <TextView
+            android:id="@+id/get_cash_bank_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/get_cash_bank_icon"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/get_cash_bank_icon"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/CHAR_BLACK_COLOR"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/bank_branch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/get_cash_bank_name"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/get_cash_bank_icon"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/CHAR_GRAY_COLOR"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/bank_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/icon_bank_select"
+            android:visibility="gone" />
+    </RelativeLayout>
+</LinearLayout>

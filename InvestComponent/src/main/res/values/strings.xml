@@ -4,4 +4,5 @@
     <string name="title_activity_invest_detail">InvestDetailActivity</string>
     <string name="title_activity_pay_order">PayOrderActivity</string>
     <string name="title_activity_select_discount">SelectDiscountActivity</string>
+    <string name="title_activity_bank_list">BankListActivity</string>
 </resources>

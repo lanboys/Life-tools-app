@@ -6,6 +6,8 @@ import com.luojilab.component.componentlib.router.ui.UIRouter;
 import com.mjn.home.HomeServiceImpl;
 import com.mjn.libs.comm.service.HomeService;
 
+import static com.mjn.libs.cons.UIRouterCons.HOME_HOST;
+
 public class HomeAppLike implements IApplicationLike {
 
     Router router = Router.getInstance();
@@ -14,13 +16,13 @@ public class HomeAppLike implements IApplicationLike {
     @Override
     public void onCreate() {
         //暂时 没有交互页面 不注册
-        //uiRouter.registerUI("home");
+        uiRouter.registerUI(HOME_HOST);
         router.addService(HomeService.class.getSimpleName(), new HomeServiceImpl());
     }
 
     @Override
     public void onStop() {
-        //uiRouter.unregisterUI("home");
+        uiRouter.unregisterUI(HOME_HOST);
         router.removeService(HomeService.class.getSimpleName());
     }
 }

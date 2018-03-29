@@ -17,31 +17,31 @@ public class TimeCount extends CountDownTimer {
     public TimeCount(long millisInFuture, long countDownInterval, CountDownTimerListener listener) {
         super(millisInFuture, countDownInterval);// 参数依次为总时长,和计时的时间间隔
         countDownTimerListener = listener;
-        countDownTimerListener.init();
+        countDownTimerListener.initTimer();
     }
 
     @Override
     public void onFinish() {// 计时完毕时触发
-        countDownTimerListener.finish();
+        countDownTimerListener.finishTimer();
     }
 
     @Override
     public void onTick(long millisUntilFinished) {// 计时过程显示
-        countDownTimerListener.update(millisUntilFinished);
+        countDownTimerListener.updateTimer(millisUntilFinished);
     }
 
     public interface CountDownTimerListener {
         /**
          * 初始化
          */
-        public void init();
+        public void initTimer();
         /**
          * 计时结束
          */
-        public void finish();
+        public void finishTimer();
         /**
          * 更新控件
          */
-        public void update(long millisUntilFinished);
+        public void updateTimer(long millisUntilFinished);
     }
 }

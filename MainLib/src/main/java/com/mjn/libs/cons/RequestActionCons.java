@@ -24,4 +24,7 @@ public class RequestActionCons implements IConstants {
     public static final int ACTION_GET_PAY_ORDER_VCODE = 1042;
     public static final int ACTION_GET_RE_PAY_ORDER_VCODE = 1043;
     public static final int ACTION_PAY_ORDER = 1044;
+
+    public static final int ACTION_UPDATE_BANKCARD_LIST = 1051;
+    public static final int ACTION_SET_DEFAULT_BANKCARD = 1052;
 }

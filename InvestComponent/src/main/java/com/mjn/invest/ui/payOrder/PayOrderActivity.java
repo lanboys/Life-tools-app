@@ -15,9 +15,9 @@ import com.bing.lan.comm.utils.SoftInputUtil;
 import com.bing.lan.comm.view.MyToolbar;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.luojilab.component.componentlib.router.ui.UIRouter;
+import com.luojilab.component.componentlib.service.JsonService;
 import com.mjn.invest.R;
 import com.mjn.invest.ui.investUp.MyPullToRefreshScrollView;
-import com.mjn.invest.ui.selectDiscount.SelectDiscountActivity;
 import com.mjn.libs.api.ResponseListDataResult;
 import com.mjn.libs.base.MainLibActivity;
 import com.mjn.libs.comm.bean.IBankCard;
@@ -34,6 +34,15 @@ import com.mjn.libs.utils.Tools;
 
 import static com.mjn.libs.cons.IntentParamsKeyCons.INTENT_TO_PAY_ORDER_PROJECT_ID;
 import static com.mjn.libs.cons.IntentParamsKeyCons.INTENT_TO_PAY_ORDER_PROJECT_MONEY;
+import static com.mjn.libs.cons.UIRouterCons.APP_HOST;
+import static com.mjn.libs.cons.UIRouterCons.MAIN_APP_ROUTE_NODE_PATH;
+import static com.mjn.libs.cons.UIRouterCons.UI_ROUTER_SCHEME;
+import static com.mjn.libs.cons.UIRouterCons.USER_AUTOWIRED_PAY_INFO;
+import static com.mjn.libs.cons.UIRouterCons.USER_BANKLIST_AUTOWIRED_IS_PAYORDER;
+import static com.mjn.libs.cons.UIRouterCons.USER_BANKLIST_ROUTE_NODE_PATH;
+import static com.mjn.libs.cons.UIRouterCons.USER_DISCOUNT_AUTOWIRED_MONEY;
+import static com.mjn.libs.cons.UIRouterCons.USER_DISCOUNT_ROUTE_NODE_PATH;
+import static com.mjn.libs.cons.UIRouterCons.USER_HOST;
 
 /**
  * @author 蓝兵
@@ -116,12 +125,12 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
             }
         }
 
+        mPullToRefreshBase = mPullRefreshScrollview;
         mPullRefreshScrollview.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
         mPullRefreshScrollview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
                 mPresenter.getOrderInfo(mProjectId, mMoney + "");
-
             }
 
             @Override
@@ -138,7 +147,6 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
         mPayOrderBtnPay.setOnClickListener(this);
         mPayOrderBtnLimit.setOnClickListener(this);
         mPayOrderBankLayout.setOnClickListener(this);
-        mPayOrderDiscountLayout.setOnClickListener(this);
     }
 
     @Override
@@ -183,15 +191,23 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
             Tools.toastShow("您没有优惠券");
             return;
         }
-        //Bundle bundle = new Bundle();
-        //bundle.putLong("money", mMoney);
-        //bundle.putSerializable("payInfo", mPayInfo);
+
         //showError("去选择优惠券");
 
-        Intent intent = new Intent(PayOrderActivity.this, SelectDiscountActivity.class);
-        intent.putExtra(INTENT_TO_PAY_ORDER_PROJECT_MONEY, mMoney + "");
-        intent.putExtra(INTENT_TO_PAY_ORDER_PROJECT_ID, mPayInfo);
-        startActivityForResult(intent, IntentRequestCode.REQUEST_CODE_TO_GET_DISCOUNT);
+        //Intent intent = new Intent(PayOrderActivity.this, SelectDiscountActivity.class);
+        //intent.putExtra(INTENT_TO_PAY_ORDER_PROJECT_MONEY, mMoney + "");
+        //intent.putExtra(INTENT_TO_PAY_ORDER_PROJECT_ID, mPayInfo);
+        //startActivityForResult(intent, IntentRequestCode.REQUEST_CODE_TO_GET_DISCOUNT);
+
+        Bundle bundle = new Bundle();
+        bundle.putString(USER_DISCOUNT_AUTOWIRED_MONEY, mMoney + "");
+        bundle.putString(USER_AUTOWIRED_PAY_INFO, JsonService.Factory.getInstance().create().toJsonString(mPayInfo));
+
+        UIRouter.getInstance().openUri(
+                this,
+                UI_ROUTER_SCHEME + USER_HOST + USER_DISCOUNT_ROUTE_NODE_PATH,
+                bundle,
+                IntentRequestCode.REQUEST_CODE_TO_GET_DISCOUNT);
     }
 
     @Override
@@ -215,19 +231,28 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
                     mPayOrderCoupon.setText("0元");
                 }
             }
-            mPresenter.getOrderInfo(mProjectId, mMoney + "");
         }
+        readyStartPresenter();
     }
 
     /**
      * 银行卡点击
      */
     public void bankClick(View view) {
+
+        //Intent intent = new Intent(PayOrderActivity.this, BankListActivity.class);
+        //intent.putExtra(INTENT_TO_SELECT_BANK_ISBACK, true);
+        //intent.putExtra(INTENT_TO_SELECT_BANK_INFO, mPayInfo);
+        //startActivity(intent);
+
         Bundle bundle = new Bundle();
-        bundle.putSerializable("payInfo", mPayInfo);
-        bundle.putBoolean("isBack", true);
-        //Tools.pushScreen(MyBank.class, bundle);
-        showError("去选择银行");
+        bundle.putString(USER_BANKLIST_AUTOWIRED_IS_PAYORDER, "1");
+        bundle.putString(USER_AUTOWIRED_PAY_INFO, JsonService.Factory.getInstance().create().toJsonString(mPayInfo));
+
+        UIRouter.getInstance().openUri(
+                this,
+                UI_ROUTER_SCHEME + USER_HOST + USER_BANKLIST_ROUTE_NODE_PATH,
+                bundle);
     }
 
     /**
@@ -327,18 +352,18 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
     }
 
     @Override
-    public void init() {
+    public void initTimer() {
         mPayOrderSmsBtnSend.setClickable(false);
     }
 
     @Override
-    public void finish() {
+    public void finishTimer() {
         mPayOrderSmsBtnSend.setText("重新获取");
         mPayOrderSmsBtnSend.setClickable(true);
     }
 
     @Override
-    public void update(long millisUntilFinished) {
+    public void updateTimer(long millisUntilFinished) {
         long time = (millisUntilFinished / 1000);
         if (time < 10) {
             mPayOrderSmsBtnSend.setText("0");
@@ -436,7 +461,10 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
         mOrderBean = data.getList().get(0);
         if (mOrderBean.isSuccess()) {
             showToast("余额支付成功");
-            UIRouter.getInstance().openUri(this, "DDComp://app/mainApp", null);
+            UIRouter.getInstance().openUri(
+                    this,
+                    UI_ROUTER_SCHEME + APP_HOST + MAIN_APP_ROUTE_NODE_PATH,
+                    null);
         } else {
             // 弹框
             if (!TextUtils.isEmpty(mOrderBean.getPhone())) {

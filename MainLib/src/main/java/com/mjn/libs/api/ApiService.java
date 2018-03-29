@@ -2,6 +2,8 @@ package com.mjn.libs.api;
 
 import com.bing.lan.comm.api.HttpResult;
 import com.mjn.libs.comm.bean.Home;
+import com.mjn.libs.comm.bean.IBankCard;
+import com.mjn.libs.comm.bean.IBankCardList;
 import com.mjn.libs.comm.bean.IProduct;
 import com.mjn.libs.comm.bean.ISmsCode;
 import com.mjn.libs.comm.bean.IUser;
@@ -106,4 +108,17 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("trade/order/pay")
     Observable<ResponseResult<OrderBean>> payOrder(@FieldMap Map<String, String> map);
+
+    /**
+     * 查询银行卡列表接口
+     */
+    @GET("user/ibankcardlist/search/findBankCards")
+    Observable<ResponseResult<IBankCardList>> findBankCards(@QueryMap Map<String, String> map);
+
+    /**
+     * 设置默认银行卡
+     */
+    @FormUrlEncoded
+    @POST("user/ibankcard/isDefault")
+    Observable<ResponseResult<IBankCard>> setDefaultBankCard(@FieldMap Map<String, String> map);
 }
