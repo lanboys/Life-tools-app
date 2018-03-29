@@ -23,6 +23,12 @@ public class PayOrderPresenter
     }
 
     @Override
+    public void getOrderInfo(String projectId, String money) {
+        showProgressDialog("正在加载..");
+        requestData(ACTION_UPDATE_ORDER_INFO, projectId, money);
+    }
+
+    @Override
     public void sendPayVcode(String projectId, String couponId, String bankId, String amount) {
         showProgressDialog("正在获取..");
         requestData(ACTION_GET_PAY_ORDER_VCODE, projectId, couponId, bankId, amount);
@@ -38,12 +44,6 @@ public class PayOrderPresenter
     public void payOrder(String orderId, String vcode) {
         showProgressDialog("正在加载..");
         requestData(ACTION_PAY_ORDER, orderId, vcode);
-    }
-
-    @Override
-    public void getOrderInfo(String projectId, String money) {
-        showProgressDialog("正在加载..");
-        requestData(ACTION_UPDATE_ORDER_INFO, projectId, money);
     }
 
     @Override

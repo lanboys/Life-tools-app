@@ -8,7 +8,8 @@ import java.util.Date;
  * @tiem 2017/11/29
  */
 
-public class UserCoupon implements Serializable {
+public class UserCoupon implements Serializable, ISelectDiscountItemBean {
+
     private int userCouponId;
     private int userId;
     private String couponCode;
@@ -145,5 +146,17 @@ public class UserCoupon implements Serializable {
 
     public byte getCouponType() {
         return this.couponType;
+    }
+
+    int selectDiscountType;
+
+    @Override
+    public int getSelectDiscountBeanType() {
+        return selectDiscountType;
+    }
+
+    @Override
+    public void setSelectDiscountBeanType(int selectDiscountType) {
+        this.selectDiscountType = selectDiscountType;
     }
 }

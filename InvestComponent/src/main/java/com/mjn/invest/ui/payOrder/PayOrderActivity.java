@@ -66,7 +66,7 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
     private String mProjectId;
     private Long mMoney;
     private OrderBean mOrderBean;
-    private PayInfo mPayInfo;
+    private PayInfo mPayInfo = new PayInfo();
 
     @Override
     protected int getLayoutResId() {
@@ -120,7 +120,8 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
         mPullRefreshScrollview.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-                //payOrderModel.getOrderInfo();
+                mPresenter.getOrderInfo(mProjectId, mMoney + "");
+
             }
 
             @Override
@@ -142,7 +143,7 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
 
     @Override
     protected void readyStartPresenter() {
-
+        mPresenter.getOrderInfo(mProjectId, mMoney + "");
     }
 
     @Override
@@ -173,6 +174,10 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
      * 优惠券点击
      */
     public void discountClick(View view) {
+        if (mPayInfo == null) {
+            return;
+        }
+
         if (mPayInfo.getLuckeyMoneys() == null && mPayInfo.getCoupons() == null || mPayInfo.getCoupons().isEmpty() &&
                 mPayInfo.getLuckeyMoneys().isEmpty()) {
             Tools.toastShow("您没有优惠券");
@@ -194,8 +199,7 @@ public class PayOrderActivity extends MainLibActivity<IPayOrderContract.IPayOrde
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == IntentRequestCode.REQUEST_CODE_TO_GET_DISCOUNT && RESULT_OK == resultCode) {
-
-            Bundle bundle = null;
+            Bundle bundle = data.getBundleExtra("discount");
             if (bundle != null) {//优惠卷选择
                 UserCoupon userCoupon = (UserCoupon) bundle.getSerializable("coupon");
                 isUseCoupon = bundle.getBoolean("isUse", true);
