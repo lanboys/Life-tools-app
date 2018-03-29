@@ -22,4 +22,8 @@ public class UIRouterCons implements IConstants {
 
     public static final String INVEST_DETAIL_AUTOWIRED_PRODUCT_TITLE = "title";
     public static final String INVEST_DETAIL_AUTOWIRED_PRODUCT_TITLE_DESC = "标的标题";
+
+    // 账户UI路由信息
+    public static final String USER_ACCOUNT_INFORMATION = "userAccount";
+    public static final String USER_ACCOUNT_INFORMATION_DESC = "用户账户";
 }

@@ -5,10 +5,18 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.luojilab.router.facade.annotation.RouteNode;
+import com.mjn.libs.cons.UIRouterCons;
+
+/**
+ * @author Zhuwg
+ */
+@RouteNode(path = UIRouterCons.USER_ACCOUNT_INFORMATION,
+        desc = UIRouterCons.USER_ACCOUNT_INFORMATION_DESC)
 public class UserComponentActivity extends AppCompatActivity {
 
     @Override
